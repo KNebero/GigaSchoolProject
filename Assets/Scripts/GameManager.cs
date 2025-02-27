@@ -13,6 +13,6 @@ public class GameManager : MonoBehaviour
 
     private void ShowClick()
     {
-        Debug.Log("Clicked");
+        Debug.Log("Clicked button " + _clickButton.name);
     }
 }
