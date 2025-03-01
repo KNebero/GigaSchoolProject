@@ -4,15 +4,10 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private ClickButtonController _clickButton;
-
+    [SerializeField] private ClickButtonManager _clickButtonManager;
+    
     private void Awake()
     {
-        _clickButton.SubscribeOnOnClick(ShowClick);
-    }
-
-    private void ShowClick()
-    {
-        Debug.Log("Clicked button " + _clickButton.name);
+        _clickButtonManager.Initialize();
     }
 }

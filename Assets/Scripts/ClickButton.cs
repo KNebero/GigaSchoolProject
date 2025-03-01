@@ -2,15 +2,15 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class ClickButtonController : MonoBehaviour
+public class ClickButton : MonoBehaviour
 {
     [SerializeField] private Image _image;
     [SerializeField] private Button _button;
 
-    public void Initialize()
+    public void Initialize(Sprite sprite, ColorBlock colorBlock)
     {
-        // Иницциализация палитры кнопки
-        // Визуальное изменение кнопеи при клике
+        _image.sprite = sprite;
+        _button.colors = colorBlock;
     }
 
     public void SubscribeOnOnClick(UnityAction action)
