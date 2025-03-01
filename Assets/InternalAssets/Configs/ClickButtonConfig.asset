@@ -15,8 +15,8 @@ MonoBehaviour:
   DefaultSprite: {fileID: 0}
   ButtonColors:
     m_NormalColor: {r: 1, g: 0.9290703, b: 0.435849, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.8248456, b: 0.1566037, a: 1}
-    m_PressedColor: {r: 1, g: 0.8732409, b: 0.20188677, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.90972054, b: 0.2924527, a: 1}
+    m_PressedColor: {r: 1, g: 0.8458084, b: 0.1566037, a: 1}
     m_SelectedColor: {r: 1, g: 0.92941177, b: 0.43529412, a: 1}
     m_DisabledColor: {r: 0.4490565, g: 0.4490565, b: 0.4490565, a: 1}
     m_ColorMultiplier: 1
