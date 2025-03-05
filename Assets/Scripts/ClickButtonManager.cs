@@ -11,6 +11,6 @@ public class ClickButtonManager : MonoBehaviour
     public void Initialize()
     {
         _clickButton.Initialize(_clickButtonConfig.DefaultSprite, _clickButtonConfig.ButtonColors);
-        _clickButton.SubscribeOnOnClick(() => OnClicked?.Invoke());
+        _clickButton.SubscribeOnClick(() => OnClicked?.Invoke());
     }
 }
