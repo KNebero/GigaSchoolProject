@@ -19,6 +19,9 @@ public class Timer : MonoBehaviour
         _maxTime = maxTime;
         _currentTime = maxTime;
         _timerText.text = _currentTime.ToString("00:00");
+        _timerSlider.maxValue = _maxTime;
+        _timerSlider.value = _maxTime;
+        _timerSlider.minValue = 0;
     }
 
     public void Play()
@@ -57,5 +60,6 @@ public class Timer : MonoBehaviour
         
         _currentTime -= deltaTime;
         _timerText.text = _currentTime.ToString("00:00");
+        _timerSlider.value = _currentTime;
     }
 }

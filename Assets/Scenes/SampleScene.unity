@@ -587,6 +587,34 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 939198656588754512, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 939198656588754512, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9120868
+      objectReference: {fileID: 0}
+    - target: {fileID: 939198656588754512, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1451164663319275254, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1451164663319275254, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
+      propertyPath: m_HandleRect
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1451164663319275254, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1451164663319275254, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1682085036900399840, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -683,6 +711,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 5192325190193291565, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
+      propertyPath: m_Color.b
+      value: 0.4490565
+      objectReference: {fileID: 0}
+    - target: {fileID: 5192325190193291565, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
+      propertyPath: m_Color.g
+      value: 0.4490565
+      objectReference: {fileID: 0}
+    - target: {fileID: 5192325190193291565, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
+      propertyPath: m_Color.r
+      value: 0.4490565
+      objectReference: {fileID: 0}
     - target: {fileID: 5743398158763949179, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
       propertyPath: m_SizeDelta.y
       value: 800
@@ -700,11 +740,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7476814146035882648, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7476814146035882648, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7476814146035882648, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7476814146035882648, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2333730520598128028, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
