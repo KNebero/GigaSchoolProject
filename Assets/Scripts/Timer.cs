@@ -12,6 +12,21 @@ public class Timer : MonoBehaviour
     private float _currentTime;
     private bool _isPlaying;
 
+    public float MaxTime
+    {
+        get => _maxTime;
+    }
+
+    public float CurrentTime
+    {
+        get => _currentTime;
+    }
+
+    public float TimePast
+    {
+        get => _maxTime - _currentTime;
+    }
+
     public event UnityAction OnTimerEnd;
 
     public void Initialize(float maxTime)

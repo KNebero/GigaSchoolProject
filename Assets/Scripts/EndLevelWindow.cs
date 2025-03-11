@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,6 +16,10 @@ public class EndLevelWindow : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI _loseInfoText;
 	[SerializeField] private TextMeshProUGUI _winInfoText;
 
+	[SerializeField] private List<string> _losePhrases;
+	
+	[SerializeField] private Timer _timer;
+	
 	public event UnityAction OnRestartClicked;
 
 	public void Initialize()
@@ -26,6 +31,7 @@ public class EndLevelWindow : MonoBehaviour
 	public void ShowLooseWindow()
 	{
 		_loseLevelWindow.SetActive(true);
+		_loseInfoText.text = _losePhrases.Count == 0 ? "" : _losePhrases[Random.Range(0, _losePhrases.Count)];
 		_winLevelWindow.SetActive(false);
 
 		gameObject.SetActive(true);
@@ -34,6 +40,7 @@ public class EndLevelWindow : MonoBehaviour
 	public void ShowWinWindow()
 	{
 		_winLevelWindow.SetActive(true);
+		_winInfoText.text = "Вы победили противника за " + _timer.TimePast.ToString("00:00");
 		_loseLevelWindow.SetActive(false);
 
 		gameObject.SetActive(true);
