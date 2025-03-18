@@ -1,4 +1,8 @@
 using System;
+using Game.ClickButton;
+using Game.EndLevelWindow;
+using Game.Enemies;
+using Game.HealthBar;
 using SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;

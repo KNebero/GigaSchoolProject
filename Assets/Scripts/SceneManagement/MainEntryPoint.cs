@@ -7,7 +7,7 @@ namespace SceneManagement
 	{
 		public void Awake()
 		{
-			if (GameObject.FindGameObjectWithTag(SceneTags.LoadScene)) return;
+			if (GameObject.FindGameObjectWithTag(Tags.SceneLoader)) return;
 			
 			var sceneLoaderPrefab = Resources.Load<SceneLoader>("SceneLoader");
 			var sceneLoader = Instantiate(sceneLoaderPrefab);

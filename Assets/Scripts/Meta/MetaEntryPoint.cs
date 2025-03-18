@@ -15,7 +15,7 @@ namespace SceneManagement
 
 		private void StartLevel()
 		{
-			var sceneLoader = GameObject.FindWithTag(SceneTags.LoadScene).GetComponent<SceneLoader>();
+			var sceneLoader = GameObject.FindWithTag(Tags.SceneLoader).GetComponent<SceneLoader>();
 			sceneLoader.LoadGameplayScene();
 		}
 	}
