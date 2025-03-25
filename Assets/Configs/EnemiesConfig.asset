@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd676261104a47f0953ca2040581c2e2, type: 3}
   m_Name: EnemiesConfig
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1054954973755000782, guid: 848ee631911c8984da92ffe56ddf27f8, type: 3}
+  EnemyPrefab: {fileID: 1054954973755000782, guid: 848ee631911c8984da92ffe56ddf27f8, type: 3}
   Enemies:
-  - Health: 100
+  - Id: enemy
     Sprite: {fileID: -3100587905405979391, guid: 29cc1b654cf454a449f5dd4940bc84bf, type: 3}

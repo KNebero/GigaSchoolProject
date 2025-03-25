@@ -1,8 +1,10 @@
 using System;
 using Game.ClickButton;
+using Game.Configs.LevelConfigs;
 using Game.EndLevelWindow;
 using Game.Enemies;
 using Game.HealthBar;
+using Game.Timer;
 using SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -15,39 +17,49 @@ public class GameManager : EntryPoint
 	[SerializeField] private HealthBar _healthBar;
 	[SerializeField] private Timer _timer;
 	[SerializeField] private EndLevelWindow _endLevelWindow;
+	[SerializeField] private LevelsConfig _levelsConfig;
+	private GameEnterParams _gameEnterParams;
 
 	private const string SCENE_LOADER_TAG = "SceneLoader";
 
 	public override void Run(SceneEnterParams enterParams)
 	{
+		if (enterParams is not GameEnterParams gameEnterParams)
+		{
+			Debug.LogError("Expected GameEnterParams");
+			return;
+		}
+		
+		_gameEnterParams = gameEnterParams;
+
 		_clickButtonManager.Initialize();
-		_enemyManager.Initialize(_healthBar);
+		_enemyManager.Initialize(_healthBar, _timer);
 		_endLevelWindow.Initialize();
 
-		_clickButtonManager.OnClicked += () => _enemyManager.DamageCurrentEnemy(10f);
+		_clickButtonManager.OnClicked += () => _enemyManager.DamageCurrentEnemy(1f);
 		_endLevelWindow.OnRestartClicked += RestartLevel;
-		_enemyManager.OnLevelPassed += () =>
-		{
-			_endLevelWindow.ShowWinWindow();
-			_timer.Stop();
-		};
+		_enemyManager.OnLevelPassed += LevelPassed;
 
 		StartLevel();
+	}
+
+	private void LevelPassed(bool isPassed)
+	{
+		if (isPassed) _endLevelWindow.ShowWinWindow();
+		else _endLevelWindow.ShowLooseWindow();
 	}
 	
 	private void StartLevel()
 	{
-		_enemyManager.SpawnEnemy();
-		_timer.Initialize(10f);
+		var levelData = _levelsConfig.GetLevel(_gameEnterParams.Location, _gameEnterParams.Level);
 
-		_timer.Play();
-		_timer.OnTimerEnd += _endLevelWindow.ShowLooseWindow;
+		_enemyManager.StartLevel(levelData);
 		
 	}
 
 	public void RestartLevel()
 	{
 		var sceneLoader = GameObject.FindWithTag(SCENE_LOADER_TAG).GetComponent<SceneLoader>();
-		sceneLoader.LoadGameplayScene();
+		sceneLoader.LoadGameplayScene(_gameEnterParams);
 	}
 }

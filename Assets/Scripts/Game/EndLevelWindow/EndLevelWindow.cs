@@ -20,7 +20,7 @@ namespace Game.EndLevelWindow
 
 		[SerializeField] private List<string> _losePhrases;
 	
-		[SerializeField] private Timer _timer;
+		[SerializeField] private Timer.Timer _timer;
 	
 		public event UnityAction OnRestartClicked;
 

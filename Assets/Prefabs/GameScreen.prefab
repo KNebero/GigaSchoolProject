@@ -214,6 +214,7 @@ MonoBehaviour:
   _healthBar: {fileID: 1837292268953067276}
   _timer: {fileID: 1879470276101575994}
   _endLevelWindow: {fileID: 0}
+  _levelsConfig: {fileID: 11400000, guid: 7e02fed083874434186aa61cefe59374, type: 2}
 --- !u!1 &4035150233063766574
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,13 +434,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Timer
       objectReference: {fileID: 0}
+    - target: {fileID: 3890964454725940463, guid: e2f1eea88c755e94ebafaeb1f2b5f8f1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6523795993990939689, guid: e2f1eea88c755e94ebafaeb1f2b5f8f1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8262776140463871247, guid: e2f1eea88c755e94ebafaeb1f2b5f8f1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262776140463871247, guid: e2f1eea88c755e94ebafaeb1f2b5f8f1, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

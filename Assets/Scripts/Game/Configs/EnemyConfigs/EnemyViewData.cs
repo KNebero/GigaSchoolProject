@@ -4,9 +4,9 @@ using UnityEngine;
 namespace Game.Enemies
 {
 	[Serializable]
-	public class EnemyData
+	public class EnemyViewData
 	{
-		public float Health;
+		public string Id;
 		public Sprite Sprite;
 	}
 }

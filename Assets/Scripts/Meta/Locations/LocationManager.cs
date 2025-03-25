@@ -14,7 +14,7 @@ namespace SceneManagement.Locations
 
 		private int _currentLocation;
 
-		public void Initialize(int currentLocation, UnityAction<Vector2Int> startLevelCallback)
+		public void Initialize(int currentLocation, UnityAction<int, int> startLevelCallback)
 		{
 			_currentLocation = currentLocation;
 			InitLocation(currentLocation, startLevelCallback);
@@ -41,12 +41,12 @@ namespace SceneManagement.Locations
 			_locations[_currentLocation].gameObject.SetActive(true);
 		}
 
-		private void InitLocation(int currentLocation, UnityAction<Vector2Int> startLevelCallback)
+		private void InitLocation(int currentLocation, UnityAction<int, int> startLevelCallback)
 		{
 			for (int i = 0; i < _locations.Count; i++)
 			{
 				var locationNumber = i;
-				_locations[i].Initialize(level => startLevelCallback?.Invoke(new Vector2Int(locationNumber, level)));
+				_locations[i].Initialize(level => startLevelCallback?.Invoke(locationNumber, level));
 				_locations[i].SetActive(locationNumber == currentLocation);
 			}
 		}

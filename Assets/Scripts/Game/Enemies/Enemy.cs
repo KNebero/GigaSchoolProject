@@ -13,10 +13,10 @@ namespace Game.Enemies
 		public event UnityAction<float> OnDamaged;
 		public event UnityAction OnDead;
 	
-		public void Initialize(EnemyData enemyData)
+		public void Initialize(Sprite sprite, float health)
 		{
-			_health = enemyData.Health;
-			_image.sprite = enemyData.Sprite;
+			_health = health;
+			_image.sprite = sprite;
 		}
 
 		public void DoDamage(float damage)
