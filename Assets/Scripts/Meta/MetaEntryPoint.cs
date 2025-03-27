@@ -1,17 +1,23 @@
 using System;
-using SceneManagement.Locations;
+using Global.SaveSystem;
+using Global.SaveSystem.SavableObjects;
+using Meta.Locations;
+using SceneManagement;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace SceneManagement
+namespace Meta
 {
 	public class MetaEntryPoint : EntryPoint
 	{
 		[SerializeField] private LocationManager _locationManager;
+		
+		private SaveSystem _saveSystem;
 
 		public override void Run(SceneEnterParams enterParams)
 		{
-			_locationManager.Initialize(0, StartLevel);
+			_saveSystem = FindFirstObjectByType<SaveSystem>();
+			var progress = (Progress) _saveSystem.GetData(SavableObjectType.Progress);
+			_locationManager.Initialize(progress, StartLevel);
 		}
 
 		private void StartLevel(int location, int level)

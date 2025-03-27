@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace SceneManagement.Locations
+namespace Meta.Locations
 {
 	public class Pin : MonoBehaviour
 	{
@@ -15,15 +15,15 @@ namespace SceneManagement.Locations
 		[SerializeField] private Color _passedLevel;
 		[SerializeField] private Color _closedLevel;
 		
-		public void Initialize(int levelNumber, PinType pinType, UnityAction clickCallback)
+		public void Initialize(int levelNumber, ProgressState progressState, UnityAction clickCallback)
 		{
 			_text.text = $"Ур. {levelNumber}";
 
-			_image.color = pinType switch
+			_image.color = progressState switch
 			{
-				PinType.Closed  => _closedLevel,
-				PinType.Passed  => _passedLevel,
-				PinType.Current => _currentLevel
+				ProgressState.Closed  => _closedLevel,
+				ProgressState.Passed  => _passedLevel,
+				ProgressState.Current => _currentLevel
 			};
 			
 			_button.onClick.AddListener(() => clickCallback?.Invoke());

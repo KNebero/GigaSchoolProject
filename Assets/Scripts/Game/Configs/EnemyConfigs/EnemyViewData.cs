@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Game.Enemies
+namespace Game.Configs.EnemyConfigs
 {
 	[Serializable]
 	public class EnemyViewData

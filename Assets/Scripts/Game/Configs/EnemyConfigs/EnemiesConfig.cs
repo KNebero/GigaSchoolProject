@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using Game.Enemies;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Game.COnfigs.EnemyConfigs
+namespace Game.Configs.EnemyConfigs
 {
 	[CreateAssetMenu(menuName="Configs/EnemiesConfig", fileName="EnemiesConfig")]
 	public class EnemiesConfig : ScriptableObject
