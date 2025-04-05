@@ -683,6 +683,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2979434849424763146, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
+      propertyPath: _skillsConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: d6ad2287c56c5084389b65a642e77d8d, type: 2}
+    - target: {fileID: 2979434849424763146, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
       propertyPath: _endLevelWindow
       value: 
       objectReference: {fileID: 1161453237}

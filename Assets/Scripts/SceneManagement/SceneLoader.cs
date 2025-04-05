@@ -1,4 +1,5 @@
 using System.Collections;
+using Global.AudioSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,7 +8,13 @@ namespace SceneManagement
 	public class SceneLoader : MonoBehaviour
 	{
 		[SerializeField] private GameObject _loadingScreen;
-
+		private AudioManager _audioManager;
+		
+		public void Initialize(AudioManager audioManager)
+		{
+			_audioManager = audioManager;
+		}
+		
 		public void LoadMetaScene(SceneEnterParams enterParams = null)
 		{
 			StartCoroutine(LoadAndStartScene(enterParams, Scenes.MetaScene));
@@ -31,9 +38,10 @@ namespace SceneManagement
 			_loadingScreen.SetActive(false);
 		}
 
-		private IEnumerator LoadScene(string SceneName)
+		private IEnumerator LoadScene(string sceneName)
 		{
-			yield return SceneManager.LoadSceneAsync(SceneName);
+			_audioManager.Load(sceneName);
+			yield return SceneManager.LoadSceneAsync(sceneName);
 		}
 	}
 }

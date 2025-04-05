@@ -8,17 +8,17 @@ namespace SceneManagement
 	{
 		public void Awake()
 		{
-			if (GameObject.FindGameObjectWithTag(Tags.SceneLoader)) return;
+			if (GameObject.FindGameObjectWithTag(Tags.CommonObject)) return;
 			
-			var sceneLoaderPrefab = Resources.Load<SceneLoader>("SceneLoader");
-			var sceneLoader = Instantiate(sceneLoaderPrefab);
-			DontDestroyOnLoad(sceneLoader);
+			var commonObjectPrefab = Resources.Load<CommonObject>("CommonObject");
+			var commonObject = Instantiate(commonObjectPrefab);
+			DontDestroyOnLoad(commonObject);
+
+			commonObject.AudioManager.LoadOnce();
+			commonObject.SceneLoader.Initialize(commonObject.AudioManager);
+			commonObject.SaveSystem = new SaveSystem();
 			
-			var saveSystem = new GameObject().AddComponent<SaveSystem>();
-			saveSystem.Initialize();
-			DontDestroyOnLoad(saveSystem);
-			
-			sceneLoader.LoadMetaScene();
+			commonObject.SceneLoader.LoadMetaScene();
 		}
 	}
 }

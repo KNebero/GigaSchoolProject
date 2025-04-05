@@ -12,9 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9207d0396c6800549bf5ecc5f901fcd3, type: 3}
   m_Name: LevelsConfig
   m_EditorClassIdentifier: 
-  Levels:
+  _levels:
   - Location: 0
     LevelNumber: 0
+    Enemies:
+    - Id: enemy
+      Hp: 20
+      IsBoss: 0
+      BossTime: 0
+    - Id: enemy
+      Hp: 30
+      IsBoss: 0
+      BossTime: 0
+    Reward: 0
+  - Location: 0
+    LevelNumber: 1
     Enemies:
     - Id: enemy
       Hp: 20

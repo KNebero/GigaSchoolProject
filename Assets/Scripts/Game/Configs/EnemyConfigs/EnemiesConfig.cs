@@ -21,7 +21,7 @@ namespace Game.Configs.EnemyConfigs
 				}
 			}
 			
-			Debug.Log($"Couldn't find enemy with id = {id}");
+			Debug.LogError($"Couldn't find enemy with id = {id}");
 			return null;
 		}
 	}

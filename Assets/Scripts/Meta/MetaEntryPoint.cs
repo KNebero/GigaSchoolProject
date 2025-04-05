@@ -1,4 +1,5 @@
 using System;
+using Global.AudioSystem;
 using Global.SaveSystem;
 using Global.SaveSystem.SavableObjects;
 using Meta.Locations;
@@ -11,19 +12,19 @@ namespace Meta
 	{
 		[SerializeField] private LocationManager _locationManager;
 		
-		private SaveSystem _saveSystem;
+		private CommonObject _commonObject;
 
 		public override void Run(SceneEnterParams enterParams)
 		{
-			_saveSystem = FindFirstObjectByType<SaveSystem>();
-			var progress = (Progress) _saveSystem.GetData(SavableObjectType.Progress);
+			_commonObject = GameObject.FindWithTag(Tags.CommonObject).GetComponent<CommonObject>();
+			var progress = (Progress) _commonObject.SaveSystem.GetData(SavableObjectType.Progress);
 			_locationManager.Initialize(progress, StartLevel);
+			_commonObject.AudioManager.PlayClip(AudioMetaNames.Background);
 		}
 
 		private void StartLevel(int location, int level)
 		{
-			var sceneLoader = GameObject.FindWithTag(Tags.SceneLoader).GetComponent<SceneLoader>();
-			sceneLoader.LoadGameplayScene(new GameEnterParams(location, level));
+			_commonObject.SceneLoader.LoadGameplayScene(new GameEnterParams(location, level));
 		}
 	}
 }
