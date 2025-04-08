@@ -14,18 +14,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Skills:
   - SkillId: AdditionalDamageSkill
-    SkillLevel:
+    SkillLevels:
     - Level: 1
       Value: 2
       Trigger: 1
       TriggerValue: 0
+      Cost: 0
     - Level: 2
       Value: 3
       Trigger: 1
       TriggerValue: 0
-  - SkillId: MainDamageSkill
-    SkillLevel:
+      Cost: 10
+    - Level: 2
+      Value: 3
+      Trigger: 1
+      TriggerValue: 0
+      Cost: 20
+    - Level: 0
+      Value: 3
+      Trigger: 1
+      TriggerValue: 0
+      Cost: 20
+  - SkillId: FlyCatcher
+    SkillLevels:
     - Level: 0
       Value: 1
       Trigger: 1
       TriggerValue: 0
+      Cost: 0
+    - Level: 1
+      Value: 2
+      Trigger: 1
+      TriggerValue: 0
+      Cost: 50
+  - SkillId: Knife
+    SkillLevels:
+    - Level: 0
+      Value: 1
+      Trigger: 1
+      TriggerValue: 0
+      Cost: 0
+    - Level: 1
+      Value: 2
+      Trigger: 1
+      TriggerValue: 0
+      Cost: 50
+  - SkillId: Hammer
+    SkillLevels:
+    - Level: 0
+      Value: 1
+      Trigger: 1
+      TriggerValue: 0
+      Cost: 0
+    - Level: 1
+      Value: 2
+      Trigger: 1
+      TriggerValue: 0
+      Cost: 50

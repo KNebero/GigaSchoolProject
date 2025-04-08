@@ -358,6 +358,7 @@ GameObject:
   - component: {fileID: 7788108056896987879}
   - component: {fileID: 8756901302481901373}
   - component: {fileID: 6922452362687745920}
+  - component: {fileID: 7708538445526273165}
   m_Layer: 5
   m_Name: Skill
   m_TagString: Untagged
@@ -469,6 +470,24 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7708538445526273165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5752473606115353618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e074882c153f4e009a11a1bed0d786fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _label: {fileID: 1416294849049492294}
+  _description: {fileID: 5549075265742570593}
+  _level: {fileID: 7034371102465533658}
+  _cost: {fileID: 8454554194507911236}
+  _buyButton: {fileID: 6922452362687745920}
+  _skillName: 
 --- !u!1 &7047277725113520182
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,3 +882,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6872655748945214396, guid: 0c4cb01524e35914f97ee5a2b1e18e8c, type: 3}
   m_PrefabInstance: {fileID: 5484997314579032837}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8454554194507911236 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4128116139536071489, guid: 0c4cb01524e35914f97ee5a2b1e18e8c, type: 3}
+  m_PrefabInstance: {fileID: 5484997314579032837}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

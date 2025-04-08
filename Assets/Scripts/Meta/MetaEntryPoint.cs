@@ -1,24 +1,33 @@
 using System;
+using Game.Configs.EnemyConfigs;
 using Global.AudioSystem;
 using Global.SaveSystem;
 using Global.SaveSystem.SavableObjects;
 using Meta.Locations;
+using Meta.Shop;
 using SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Meta
 {
 	public class MetaEntryPoint : EntryPoint
 	{
 		[SerializeField] private LocationManager _locationManager;
+		[SerializeField] private ShopWindow _shopWindow;
+		[SerializeField] private Button _shopButton;
+		[SerializeField] private SkillsConfig _skillsConfig;
 		
 		private CommonObject _commonObject;
+		
 
 		public override void Run(SceneEnterParams enterParams)
 		{
 			_commonObject = GameObject.FindWithTag(Tags.CommonObject).GetComponent<CommonObject>();
 			var progress = (Progress) _commonObject.SaveSystem.GetData(SavableObjectType.Progress);
 			_locationManager.Initialize(progress, StartLevel);
+			_shopWindow.Initialize(_commonObject.SaveSystem, _skillsConfig);
+			_shopButton.onClick.AddListener(() => _shopWindow.gameObject.SetActive(true));
 			_commonObject.AudioManager.PlayClip(AudioMetaNames.Background);
 		}
 

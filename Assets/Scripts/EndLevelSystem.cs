@@ -45,14 +45,6 @@ public class EndLevelSystem
 
 		var maxLocationAndLevel = _levelsConfig.GetMaxLocationAndLevel();
 
-		// Ещё раз, зачем?
-		if (progress.CurrentLocation > maxLocationAndLevel.x ||
-		    (progress.CurrentLocation == maxLocationAndLevel.x
-		     && progress.CurrentLevel > maxLocationAndLevel.y))
-		{
-			return;
-		}
-
 		if (_gameEnterParams.Location != progress.CurrentLocation ||
 		    _gameEnterParams.Level != progress.CurrentLevel)
 		{

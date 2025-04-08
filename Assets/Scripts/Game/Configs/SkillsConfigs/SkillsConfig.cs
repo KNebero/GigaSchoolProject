@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Game.Skills;
 using Game.Skills.Data;
 using UnityEngine;
 
@@ -30,7 +31,7 @@ namespace Game.Configs.EnemyConfigs
 				{
 					_skillDataByLevelMap[skillData.SkillId] = new Dictionary<int, SkillDataByLevel>();
 				}
-				foreach (var skillDataByLevel in skillData.SkillLevel)
+				foreach (var skillDataByLevel in skillData.SkillLevels)
 				{
 					_skillDataByLevelMap[skillData.SkillId][skillDataByLevel.Level] = skillDataByLevel;
 				}

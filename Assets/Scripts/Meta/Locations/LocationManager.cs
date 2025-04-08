@@ -26,19 +26,34 @@ namespace Meta.Locations
 		{
 			_previousButton.onClick.AddListener(ShowPreviousLocation);
 			_nextButton.onClick.AddListener(ShowNextLocation);
+			
+			_previousButton.interactable = _currentLocation > 0;
+			_nextButton.interactable = _currentLocation < _locations.Count - 1;
 		}
 
 		private void ShowNextLocation()
 		{
-			_locations[_currentLocation].gameObject.SetActive(false);
-			_currentLocation = (_currentLocation + 1) % _locations.Count;
+			if (_currentLocation >= _locations.Count - 1) return;
+
+			++_currentLocation;
+
+			_previousButton.interactable = true;
+			_nextButton.interactable = _currentLocation < _locations.Count - 1;
+			
+			_locations[_currentLocation - 1].gameObject.SetActive(false);
 			_locations[_currentLocation].gameObject.SetActive(true);
 		}
 
 		private void ShowPreviousLocation()
 		{
-			_locations[_currentLocation].gameObject.SetActive(false);
-			_currentLocation = (_currentLocation - 1) % _locations.Count;
+			if (_currentLocation <= 0) return;
+
+			--_currentLocation;
+
+			_previousButton.interactable = _currentLocation > 0;
+			_nextButton.interactable = true;
+			
+			_locations[_currentLocation + 1].gameObject.SetActive(false);
 			_locations[_currentLocation].gameObject.SetActive(true);
 		}
 
