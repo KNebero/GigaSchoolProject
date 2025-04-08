@@ -1,5 +1,6 @@
 using System;
 using Game.Configs.EnemyConfigs;
+using Game.Configs.SkillsConfigs;
 using Global.AudioSystem;
 using Global.SaveSystem;
 using Global.SaveSystem.SavableObjects;

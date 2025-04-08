@@ -8,8 +8,10 @@ namespace Game.Skills.Data
 	[Serializable]
 	public struct SkillData
 	{
-		public SkillByLevelCalculationType CalculationType;
 		public string SkillId;
+		public SkillByLevelCalculationType CalculationType;
+		public SkillTrigger Trigger;
+		public int MaxLevel;
 		[FormerlySerializedAs("SkillLevel")] public List<SkillDataByLevel> SkillLevels;
 
 		public SkillDataByLevel GetSkillDataByLevel(int level)
@@ -19,7 +21,7 @@ namespace Game.Skills.Data
 
 		public bool IsMaxLevel(int level)
 		{
-			return SkillLevels.Max(x => x.Level) == level;
+			return MaxLevel != -1 && level == MaxLevel;
 		}
 	}
 }

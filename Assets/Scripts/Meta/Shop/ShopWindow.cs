@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
 using Game.Configs.EnemyConfigs;
+using Game.Configs.SkillsConfigs;
+using Game.Skills;
 using Global.SaveSystem;
 using Global.SaveSystem.SavableObjects;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -12,14 +15,15 @@ namespace Meta.Shop
 	public class ShopWindow : MonoBehaviour
 	{
 		[SerializeField] private Button _closeButton;
-		
+		[SerializeField] private TextMeshProUGUI _walletView;
+
 		[Serializable]
 		public struct ButtonTab
 		{
 			public Button button;
 			public GameObject tab;
 		}
-		
+
 		[SerializeField] private List<ButtonTab> _tabs;
 
 		[SerializeField] private List<SkillItem> _items;
@@ -29,19 +33,21 @@ namespace Meta.Shop
 		private SkillsConfig _skillsConfig;
 		private SaveSystem _saveSystem;
 		private Wallet _wallet;
-		private OpenedSkills _skills;
+		private OpenedSkills _openedSkills;
 
 		public void Initialize(SaveSystem saveSystem, SkillsConfig skillsConfig)
 		{
 			_skillsConfig = skillsConfig;
 			_saveSystem = saveSystem;
-			_skills = (OpenedSkills)saveSystem.GetData(SavableObjectType.OpenedSkills);
+			_openedSkills = (OpenedSkills)saveSystem.GetData(SavableObjectType.OpenedSkills);
 			_wallet = (Wallet)saveSystem.GetData(SavableObjectType.Wallet);
-			
+
+			_walletView.SetText(_wallet.Coins.ToString());
+			_wallet.OnChanged += (wallet) => { _walletView.SetText(wallet.Coins.ToString()); };
 			_closeButton.onClick.AddListener(() => gameObject.SetActive(false));
-			
+
 			InitializeItemsMap();
-			
+
 			InitializeTabsSwitching();
 			ShowShopItems();
 		}
@@ -70,32 +76,60 @@ namespace Meta.Shop
 				_itemsMap[skillItem.SkillId] = skillItem;
 			}
 		}
-		
+
 		private void ShowShopItems()
 		{
 			foreach (var skillData in _skillsConfig.Skills)
 			{
-				var skillWithLevel = _skills.GetSkillWithLevel(skillData.SkillId);
-				var skillDataBylevel = skillData.GetSkillDataByLevel(skillWithLevel.Level);
+				if (!_itemsMap.ContainsKey(skillData.SkillId)) continue;
 
-				if (!_itemsMap.ContainsKey(skillData.SkillId)) return;
+				var skillWithLevel = _openedSkills.GetSkillWithLevel(skillData.SkillId);
+				var newLevel = (skillWithLevel?.Level ?? -1) + 1;
 
-				_itemsMap[skillData.SkillId].Initialize((skillId) => SkillUpgrade(skillId, skillDataBylevel.Cost),
+				var cost = (int)(skillData.CalculationType switch
+				{
+					SkillByLevelCalculationType.Formula => skillData.SkillId switch
+					{
+						"FlySwatterSkill" => Math.Ceiling(skillData.GetSkillDataByLevel(0).Cost *
+						                                  Math.Pow(2, Math.Sqrt(0.75 * newLevel))),
+						"KnifeSkill" => Math.Ceiling(skillData.GetSkillDataByLevel(0).Cost *
+						                             Math.Pow(2, Math.Sqrt(0.75 * newLevel))),
+						"HammerSkill" => Math.Ceiling(skillData.GetSkillDataByLevel(0).Cost *
+						                              Math.Pow(2, Math.Sqrt(0.75 * newLevel))),
+						_ => Math.Ceiling(skillData.GetSkillDataByLevel(0).Cost *
+						                  Math.Pow(2, Math.Sqrt(0.75 * newLevel))),
+					},
+					SkillByLevelCalculationType.Level => newLevel > skillData.MaxLevel ? 0 : skillData.GetSkillDataByLevel(newLevel).Cost,
+					_ => 0,
+				});
+
+
+				_itemsMap[skillData.SkillId].Initialize((skillId) => SkillUpgrade(skillId, cost),
 					skillData.SkillId,
 					"",
-					skillWithLevel.Level,
-					skillDataBylevel.Cost,
-					_wallet.Coins >= skillDataBylevel.Cost,
-					skillData.IsMaxLevel(skillWithLevel.Level));
+					newLevel, // Текущий уровень (в индекс с 0) + 1 == Новый уровень
+					cost,
+					_wallet.Coins >= cost,
+					skillData.IsMaxLevel(newLevel - 1));
 			}
 		}
 
 		private void SkillUpgrade(string skillId, int cost)
 		{
-			var skillWithLevel = _skills.GetSkillWithLevel(skillId);
-			skillWithLevel.Level++;
 			_wallet.Coins -= cost;
-			
+			if (_openedSkills.GetSkillWithLevel(skillId) == null)
+			{
+				_openedSkills.Skills.Add(new SkillWithLevel()
+				{
+					Id = skillId,
+					Level = 0,
+				});
+			}
+			else
+			{
+				_openedSkills.GetSkillWithLevel(skillId).Level++;
+			}
+
 			_saveSystem.SaveData(SavableObjectType.OpenedSkills);
 			_saveSystem.SaveData(SavableObjectType.Wallet);
 

@@ -1,5 +1,6 @@
 using System;
 using Global.SaveSystem;
+using Global.SaveSystem.SavableObjects;
 using UnityEngine;
 
 namespace SceneManagement
@@ -17,6 +18,33 @@ namespace SceneManagement
 			commonObject.AudioManager.LoadOnce();
 			commonObject.SceneLoader.Initialize(commonObject.AudioManager);
 			commonObject.SaveSystem = new SaveSystem();
+			
+			var openedSkills = (OpenedSkills) commonObject.SaveSystem.GetData(SavableObjectType.OpenedSkills);
+			if (openedSkills.GetSkillWithLevel("FlySwatterSkill") == null)
+			{
+				openedSkills.Skills.Add(new SkillWithLevel()
+				{
+					Id = "FlySwatterSkill",
+					Level = 0,
+				});
+			}
+			if (openedSkills.GetSkillWithLevel("KnifeSkill") == null)
+			{
+				openedSkills.Skills.Add(new SkillWithLevel()
+				{
+					Id = "KnifeSkill",
+					Level = 0,
+				});
+			}
+			if (openedSkills.GetSkillWithLevel("HammerSkill") == null)
+			{
+				openedSkills.Skills.Add(new SkillWithLevel()
+				{
+					Id = "HammerSkill",
+					Level = 0,
+				});
+			}
+			commonObject.SaveSystem.SaveData(SavableObjectType.OpenedSkills);
 			
 			commonObject.SceneLoader.LoadMetaScene();
 		}

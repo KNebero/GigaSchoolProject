@@ -4,20 +4,21 @@ using UnityEngine.Scripting;
 
 namespace Game.Skills.SkillVariants
 {
-    public class AdditionalDamageSkill : Skill
-    {
-        [Preserve]
-        private EnemyManager _enemyManager;
-        private SkillDataByLevel _skillData;
-        public override void Initialize(SkillScope scope, SkillDataByLevel skillData)
-        {
-            _enemyManager = scope.EnemyManager;
-            _skillData = skillData;
-        }
+	[Preserve]
+	public class AdditionalDamageSkill : Skill
+	{
+		private EnemyManager _enemyManager;
+		private SkillDataByLevel _skillDataByLevel;
 
-        public override void SkillProcess()
-        {
-            _enemyManager.DamageCurrentEnemy(_skillData.Value);
-        }
-    }
+		public override void Initialize(SkillScope scope, SkillData skillData, int level)
+		{
+			_enemyManager = scope.EnemyManager;
+			_skillDataByLevel = skillData.GetSkillDataByLevel(level);
+		}
+
+		public override void SkillProcess()
+		{
+			_enemyManager.DamageCurrentEnemy(_skillDataByLevel.Value);
+		}
+	}
 }

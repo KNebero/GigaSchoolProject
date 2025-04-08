@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Game.Configs.EnemyConfigs;
+using Game.Configs.SkillsConfigs;
 using Game.Enemies;
 using Global.SaveSystem.SavableObjects;
+using Unity.Collections;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.iOS;
 
@@ -14,6 +16,7 @@ namespace Game.Skills
 		private SkillScope _scope;
 		private SkillsConfig _skillsConfig;
 		private Dictionary<SkillTrigger, List<Skill>> _skillsByTrigger;
+		private Dictionary<string, Skill> _skillsByName;
 
 		public SkillSystem(OpenedSkills openedSkills, SkillsConfig skillsConfig, EnemyManager enemyManager)
 		{
@@ -23,6 +26,7 @@ namespace Game.Skills
 			};
 			_skillsConfig = skillsConfig;
 			_skillsByTrigger = new Dictionary<SkillTrigger, List<Skill>>();
+			_skillsByName = new Dictionary<string, Skill>();
 			
 			foreach (var skill in openedSkills.Skills)
 			{
@@ -32,21 +36,21 @@ namespace Game.Skills
 
 		private void RegisterSkill(SkillWithLevel skill)
 		{
-			var skillData = _skillsConfig.GetSkillData(skill.Id, skill.Level);
-
 			var skillType = Type.GetType($"Game.Skills.SkillVariants.{skill.Id}");
 			
 			if (skillType == null)
 			{
 				throw new Exception($"Skill with id {skill.Id} not found");
 			}
-
+			
 			if (Activator.CreateInstance(skillType) is not Skill skillInstance)
 			{
 				throw new Exception($"Can not instantiate Skill with id {skill.Id}");
 			}
 			
-			skillInstance.Initialize(_scope, skillData);
+			var skillData = _skillsConfig.GetSkillData(skill.Id);
+			
+			skillInstance.Initialize(_scope, skillData, skill.Level);
 			skillInstance.OnSkillRegistered();
 			
 			if (!_skillsByTrigger.ContainsKey(skillData.Trigger))
@@ -54,6 +58,8 @@ namespace Game.Skills
 				_skillsByTrigger[skillData.Trigger] = new List<Skill>();
 			}
 			_skillsByTrigger[skillData.Trigger].Add(skillInstance);
+			
+			_skillsByName[skill.Id] = skillInstance;
 		}
 
 		public void InvokeTrigger(SkillTrigger skillTrigger)
@@ -66,6 +72,11 @@ namespace Game.Skills
 			{
 				skill.SkillProcess();
 			}
+		}
+
+		public void ProcessSkill(string skillId)
+		{
+			_skillsByName[skillId].SkillProcess();
 		}
 	}
 }

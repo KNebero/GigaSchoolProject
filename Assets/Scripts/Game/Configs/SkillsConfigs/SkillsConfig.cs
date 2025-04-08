@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using Game.Skills;
 using Game.Skills.Data;
 using UnityEngine;
 
-namespace Game.Configs.EnemyConfigs
+namespace Game.Configs.SkillsConfigs
 {
 	[CreateAssetMenu(menuName="Configs/SkillsConfig", fileName="SkillsConfig")]
 	public class SkillsConfig : ScriptableObject
@@ -11,8 +10,28 @@ namespace Game.Configs.EnemyConfigs
 		public List<SkillData> Skills;
 
 		private Dictionary<string, Dictionary<int, SkillDataByLevel>> _skillDataByLevelMap;
-		
-		public SkillDataByLevel GetSkillData(string skillId, int level)
+		private Dictionary<string, SkillData> _skillDataMap;
+
+		public SkillData GetSkillData(string skillId)
+		{
+			if (_skillDataMap == null || _skillDataMap.Count == 0)
+			{
+				FillSkillDataMap();
+			}
+			
+			return _skillDataMap[skillId];
+		}
+
+		private void FillSkillDataMap()
+		{
+			_skillDataMap = new Dictionary<string, SkillData>();
+			foreach (var skillData in Skills)
+			{
+				_skillDataMap[skillData.SkillId] = skillData;
+			}
+		}
+
+		public SkillDataByLevel GetSkillDataByLevel(string skillId, int level)
 		{
 			if (_skillDataByLevelMap == null || _skillDataByLevelMap.Count == 0)
 			{

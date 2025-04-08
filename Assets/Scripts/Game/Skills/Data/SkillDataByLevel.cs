@@ -7,7 +7,6 @@ namespace Game.Skills.Data
 	{
 		public int Level;
 		public float Value;
-		public SkillTrigger Trigger;
 		public float TriggerValue;
 		public int Cost;
 	}

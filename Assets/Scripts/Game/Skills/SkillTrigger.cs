@@ -7,5 +7,6 @@ namespace Game.Skills
 		OnTime = 3,
 		OnTimerLeft = 4,
 		OnStart = 5,
+		None = 6,
 	}
 }
