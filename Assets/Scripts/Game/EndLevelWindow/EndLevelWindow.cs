@@ -9,48 +9,87 @@ namespace Game.EndLevelWindow
 {
 	public class EndLevelWindow : MonoBehaviour
 	{
-		[FormerlySerializedAs("_looseLevelWindow")] [SerializeField] private GameObject _loseLevelWindow;
-		[SerializeField] private GameObject _winLevelWindow;
+		[SerializeField] private TextMeshProUGUI _header;
 
-		[FormerlySerializedAs("_looseRestartButton")] [SerializeField] private Button _loseRestartButton;
-		[SerializeField] private Button _winRestartButton;
+		[SerializeField] private Button _nextOrRestartButton;
 	
-		[SerializeField] private TextMeshProUGUI _loseInfoText;
-		[SerializeField] private TextMeshProUGUI _winInfoText;
+		[SerializeField] private Image _infoBox;
+		[SerializeField] private TextMeshProUGUI _infoText;
+		
+		[SerializeField] private TextMeshProUGUI _nextOrRestartButtonText;
 
 		[SerializeField] private List<string> _losePhrases;
+		
+		[SerializeField] private string _winHeader;
+		[SerializeField] private Color _winHeaderColor;
+		[SerializeField] private string _loseHeader;
+		[SerializeField] private Color _loseHeaderColor;
+		
+		[SerializeField] private Color _winInfoColor;
+		[SerializeField] private Color _loseInfoColor;
+		
+		[SerializeField] private string _nextButtonText;
+		[SerializeField] private Color _nextButtonColor;
+		[SerializeField] private string _restartButtonText;
+		[SerializeField] private Color _restartButtonColor;
 	
-		[SerializeField] private Timer.Timer _timer;
+		public Timer.Timer _timer;
 	
-		public event UnityAction OnRestartClicked;
+		private event UnityAction _onRestartClicked;
+		private event UnityAction _onNextClicked;
 
-		public void Initialize()
+		public void Initialize(Timer.Timer timer, UnityAction onNextClicked, UnityAction onRestartClicked)
 		{
-			_loseRestartButton.onClick.AddListener(RestartLevel);
-			_winRestartButton.onClick.AddListener(RestartLevel);
+			_timer = timer;
+			_onNextClicked = onNextClicked;
+			_onRestartClicked = onRestartClicked;
 		}
 
-		public void ShowLooseWindow()
+		public void ShowLoseWindow(bool isBoss)
 		{
-			_loseLevelWindow.SetActive(true);
-			_loseInfoText.text = _losePhrases.Count == 0 ? "" : _losePhrases[Random.Range(0, _losePhrases.Count)];
-			_winLevelWindow.SetActive(false);
+			_infoBox.gameObject.SetActive(isBoss);
+			if (isBoss)
+			{
+				_infoBox.color = _loseInfoColor;
+				_infoText.text = _losePhrases.Count == 0 ? "" : _losePhrases[Random.Range(0, _losePhrases.Count)];
+			}
+			_header.text = _loseHeader;
+			_header.color = _loseHeaderColor;
+			_nextOrRestartButton.image.color = _restartButtonColor;
+			_nextOrRestartButtonText.text = _restartButtonText;
+
+			_nextOrRestartButton.onClick.AddListener(RestartLevel);
 
 			gameObject.SetActive(true);
 		}
 
-		public void ShowWinWindow()
+		public void ShowWinWindow(bool isBoss)
 		{
-			_winLevelWindow.SetActive(true);
-			_winInfoText.text = "Вы победили противника за " + _timer.TimePast.ToString("00:00");
-			_loseLevelWindow.SetActive(false);
+			_infoBox.gameObject.SetActive(isBoss);
+			if (isBoss)
+			{
+				_infoBox.color = _winInfoColor;
+				_infoText.text = "Вы победили противника за " + _timer.TimePast.ToString("00:00");
+			}
+			_header.text = _winHeader;
+			_header.color = _winHeaderColor;
+			_nextOrRestartButton.image.color = _nextButtonColor;
+			_nextOrRestartButtonText.text = _nextButtonText;
+			
+			_nextOrRestartButton.onClick.AddListener(NextLevel);
 
 			gameObject.SetActive(true);
 		}
 
 		private void RestartLevel()
 		{
-			OnRestartClicked?.Invoke();
+			_onRestartClicked?.Invoke();
+			gameObject.SetActive(false);
+		}
+
+		private void NextLevel()
+		{
+			_onNextClicked?.Invoke();
 			gameObject.SetActive(false);
 		}
 	}

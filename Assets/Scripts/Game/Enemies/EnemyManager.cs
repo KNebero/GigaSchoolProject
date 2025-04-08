@@ -16,7 +16,7 @@ namespace Game.Enemies
 		private LevelData _levelData;
 		private int _currentEnemyIndex;
 
-		public event UnityAction<bool> OnLevelPassed;
+		public event UnityAction<bool, bool> OnLevelPassed;
 
 		public void Initialize(HealthBar.HealthBar healthBar, Timer.Timer timer)
 		{
@@ -45,7 +45,7 @@ namespace Game.Enemies
 			++_currentEnemyIndex;
 			if (_currentEnemyIndex >= _levelData.Enemies.Count)
 			{
-				OnLevelPassed?.Invoke(true);
+				OnLevelPassed?.Invoke(true, _levelData.Enemies[^1].IsBoss);
 				_timer.Stop();
 				return;
 			}
@@ -57,7 +57,7 @@ namespace Game.Enemies
 				_timer.Initialize(currentEnemy.BossTime);
 				_timer.SetActive(true);
 				_timer.Play();
-				_timer.OnTimerEnd += () => OnLevelPassed?.Invoke(false);
+				_timer.OnTimerEnd += () => OnLevelPassed?.Invoke(false, true);
 			}
 			
 			var currentEnemyViewData = _enemiesConfig.GetEnemy(currentEnemy.Id);

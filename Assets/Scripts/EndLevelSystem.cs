@@ -1,3 +1,5 @@
+using System;
+using System.Runtime.InteropServices;
 using Game.Configs.LevelConfigs;
 using Game.EndLevelWindow;
 using Global.SaveSystem;
@@ -22,28 +24,28 @@ public class EndLevelSystem
 		_levelsConfig = levelsConfig;
 	}
 
-	public void LevelPassed(bool isPassed)
+	public void LevelPassed(bool isPassed, bool isBoss)
 	{
 		if (isPassed)
 		{
 			TrySaveProgress();
-			_endLevelWindow.ShowWinWindow();
+			_endLevelWindow.ShowWinWindow(isBoss);
 		}
 		else
 		{
-			_endLevelWindow.ShowLooseWindow();
+			_endLevelWindow.ShowLoseWindow(isBoss);
 		}
 	}
 
 	private void TrySaveProgress()
 	{
 		var progress = (Progress)_saveSystem.GetData(SavableObjectType.Progress);
-
-		if (_gameEnterParams.Location != progress.CurrentLocation ||
-		    _gameEnterParams.Level != progress.CurrentLevel) return;
+		Wallet wallet;
+		LevelData level;
 
 		var maxLocationAndLevel = _levelsConfig.GetMaxLocationAndLevel();
 
+		// Ещё раз, зачем?
 		if (progress.CurrentLocation > maxLocationAndLevel.x ||
 		    (progress.CurrentLocation == maxLocationAndLevel.x
 		     && progress.CurrentLevel > maxLocationAndLevel.y))
@@ -51,6 +53,17 @@ public class EndLevelSystem
 			return;
 		}
 
+		if (_gameEnterParams.Location != progress.CurrentLocation ||
+		    _gameEnterParams.Level != progress.CurrentLevel)
+		{
+			wallet = (Wallet)_saveSystem.GetData(SavableObjectType.Wallet);
+			level = _levelsConfig.GetLevel(_gameEnterParams.Location, _gameEnterParams.Level);
+			wallet.Coins += level.Reward;
+			_saveSystem.SaveData(SavableObjectType.Wallet);
+			
+			return;
+		}
+		
 		var maxLevel = _levelsConfig.GetMaxLevelOnLocation(progress.CurrentLocation);
 
 		if (progress.CurrentLevel >= maxLevel)
@@ -62,6 +75,11 @@ public class EndLevelSystem
 		{
 			++progress.CurrentLevel;
 		}
+		
+		wallet = (Wallet)_saveSystem.GetData(SavableObjectType.Wallet);
+		level = _levelsConfig.GetLevel(_gameEnterParams.Location, _gameEnterParams.Level);
+		wallet.Coins += (int) Math.Floor(level.Reward * LevelData.FirstTimeMultiplier);
+		_saveSystem.SaveData(SavableObjectType.Wallet);
 
 		_saveSystem.SaveData(SavableObjectType.Progress);
 	}

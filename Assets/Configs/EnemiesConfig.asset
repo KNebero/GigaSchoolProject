@@ -14,5 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyPrefab: {fileID: 1054954973755000782, guid: 848ee631911c8984da92ffe56ddf27f8, type: 3}
   Enemies:
-  - Id: enemy
-    Sprite: {fileID: -3100587905405979391, guid: 29cc1b654cf454a449f5dd4940bc84bf, type: 3}
+  - Id: enemy_0
+    Sprite: {fileID: -6734154792200192702, guid: d9569e3b39978804bac44d430b73e26f, type: 3}
+  - Id: enemy_1
+    Sprite: {fileID: -250449736201518369, guid: fef0a4295e2c73845ae63a13353f7cce, type: 3}
+  - Id: enemy_2
+    Sprite: {fileID: 6416849227559114903, guid: 2c2c12d4b8aa92a499090b8948593a6d, type: 3}
+  - Id: boss_0
+    Sprite: {fileID: 82705157768754242, guid: 417db165364bb5f49ae0cc8c3b254f66, type: 3}

@@ -16,24 +16,160 @@ MonoBehaviour:
   - Location: 0
     LevelNumber: 0
     Enemies:
-    - Id: enemy
+    - Id: enemy_0
       Hp: 20
       IsBoss: 0
       BossTime: 0
-    - Id: enemy
-      Hp: 30
-      IsBoss: 0
-      BossTime: 0
-    Reward: 0
+    Reward: 5
   - Location: 0
     LevelNumber: 1
     Enemies:
-    - Id: enemy
+    - Id: enemy_0
       Hp: 20
       IsBoss: 0
       BossTime: 0
-    - Id: enemy
+    - Id: enemy_1
+      Hp: 30
+      IsBoss: 0
+      BossTime: 0
+    Reward: 8
+  - Location: 0
+    LevelNumber: 2
+    Enemies:
+    - Id: enemy_1
+      Hp: 30
+      IsBoss: 0
+      BossTime: 0
+    - Id: enemy_2
+      Hp: 30
+      IsBoss: 0
+      BossTime: 0
+    Reward: 10
+  - Location: 0
+    LevelNumber: 3
+    Enemies:
+    - Id: enemy_2
+      Hp: 35
+      IsBoss: 0
+      BossTime: 0
+    - Id: enemy_2
+      Hp: 35
+      IsBoss: 0
+      BossTime: 0
+    Reward: 12
+  - Location: 0
+    LevelNumber: 4
+    Enemies:
+    - Id: enemy_0
+      Hp: 25
+      IsBoss: 0
+      BossTime: 0
+    - Id: enemy_1
+      Hp: 30
+      IsBoss: 0
+      BossTime: 0
+    - Id: enemy_2
+      Hp: 35
+      IsBoss: 0
+      BossTime: 0
+    Reward: 13
+  - Location: 0
+    LevelNumber: 5
+    Enemies:
+    - Id: enemy_1
+      Hp: 35
+      IsBoss: 0
+      BossTime: 0
+    - Id: enemy_2
+      Hp: 40
+      IsBoss: 0
+      BossTime: 0
+    Reward: 15
+  - Location: 0
+    LevelNumber: 6
+    Enemies:
+    - Id: boss_0
       Hp: 50
       IsBoss: 1
-      BossTime: 20
-    Reward: 0
+      BossTime: 10
+    Reward: 30
+  - Location: 1
+    LevelNumber: 0
+    Enemies:
+    - Id: enemy_0
+      Hp: 30
+      IsBoss: 0
+      BossTime: 0
+    Reward: 15
+  - Location: 1
+    LevelNumber: 1
+    Enemies:
+    - Id: enemy_0
+      Hp: 30
+      IsBoss: 0
+      BossTime: 0
+    - Id: enemy_1
+      Hp: 35
+      IsBoss: 0
+      BossTime: 0
+    Reward: 16
+  - Location: 1
+    LevelNumber: 2
+    Enemies:
+    - Id: enemy_1
+      Hp: 35
+      IsBoss: 0
+      BossTime: 0
+    - Id: enemy_1
+      Hp: 35
+      IsBoss: 0
+      BossTime: 0
+    Reward: 18
+  - Location: 1
+    LevelNumber: 3
+    Enemies:
+    - Id: enemy_0
+      Hp: 35
+      IsBoss: 0
+      BossTime: 0
+    - Id: enemy_1
+      Hp: 40
+      IsBoss: 0
+      BossTime: 0
+    Reward: 20
+  - Location: 1
+    LevelNumber: 4
+    Enemies:
+    - Id: enemy_0
+      Hp: 35
+      IsBoss: 0
+      BossTime: 0
+    - Id: enemy_1
+      Hp: 40
+      IsBoss: 0
+      BossTime: 0
+    - Id: enemy_2
+      Hp: 45
+      IsBoss: 0
+      BossTime: 0
+    Reward: 23
+  - Location: 1
+    LevelNumber: 5
+    Enemies:
+    - Id: enemy_2
+      Hp: 45
+      IsBoss: 0
+      BossTime: 0
+    - Id: enemy_2
+      Hp: 45
+      IsBoss: 0
+      BossTime: 0
+    Reward: 25
+  - Location: 1
+    LevelNumber: 6
+    Enemies:
+    - Id: boss_0
+      Hp: 75
+      IsBoss: 1
+      BossTime: 15
+    Reward: 40

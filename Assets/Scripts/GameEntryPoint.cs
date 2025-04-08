@@ -24,6 +24,7 @@ public class GameEntryPoint : EntryPoint
 	[SerializeField] private HealthBar _healthBar;
 	[SerializeField] private Timer _timer;
 	[SerializeField] private EndLevelWindow _endLevelWindow;
+	[SerializeField] private Button _goToMetaButton;
 	[SerializeField] private LevelsConfig _levelsConfig;
 	[SerializeField] private SkillsConfig _skillsConfig;
 	private GameEnterParams _gameEnterParams;
@@ -45,19 +46,20 @@ public class GameEntryPoint : EntryPoint
 
 		_clickButtonManager.Initialize();
 		_enemyManager.Initialize(_healthBar, _timer);
-		_endLevelWindow.Initialize();
+		_endLevelWindow.Initialize(_timer, GoToMeta, RestartLevel);
 		
 		var openedSkills = (OpenedSkills) _commonObject.SaveSystem.GetData(SavableObjectType.OpenedSkills);
-		_skillSystem = new(openedSkills, _skillsConfig, _enemyManager);
-		_endLevelSystem = new(_endLevelWindow, _commonObject.SaveSystem, _gameEnterParams, _levelsConfig);
+		_skillSystem = new SkillSystem(openedSkills, _skillsConfig, _enemyManager);
+		_endLevelSystem = new EndLevelSystem(_endLevelWindow, _commonObject.SaveSystem, _gameEnterParams, _levelsConfig);
 
 		_clickButtonManager.OnClicked += () =>
 		{
 			_skillSystem.InvokeTrigger(SkillTrigger.OnDamage);
 		};
-		_endLevelWindow.OnRestartClicked += RestartLevel;
 		_enemyManager.OnLevelPassed += _endLevelSystem.LevelPassed;
 
+		_goToMetaButton.onClick.AddListener(GoToMeta);
+		
 		_commonObject.AudioManager.PlayClip(AudioGameNames.Background);
 		StartLevel();
 	}
