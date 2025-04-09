@@ -90,14 +90,14 @@ namespace Meta.Shop
 				{
 					SkillByLevelCalculationType.Formula => skillData.SkillId switch
 					{
-						"FlySwatterSkill" => Math.Ceiling(skillData.GetSkillDataByLevel(0).Cost *
+						"FlySwatterSkill" => Math.Round(skillData.GetSkillDataByLevel(0).Cost *
 						                                  Math.Pow(2, Math.Sqrt(0.75 * newLevel))),
-						"KnifeSkill" => Math.Ceiling(skillData.GetSkillDataByLevel(0).Cost *
-						                             Math.Pow(2, Math.Sqrt(0.75 * newLevel))),
-						"HammerSkill" => Math.Ceiling(skillData.GetSkillDataByLevel(0).Cost *
-						                              Math.Pow(2, Math.Sqrt(0.75 * newLevel))),
-						_ => Math.Ceiling(skillData.GetSkillDataByLevel(0).Cost *
-						                  Math.Pow(2, Math.Sqrt(0.75 * newLevel))),
+						"KnifeSkill" => Math.Round(skillData.GetSkillDataByLevel(0).Cost *
+						                           Math.Pow(2, Math.Sqrt(0.75 * newLevel))),
+						"HammerSkill" => Math.Round(skillData.GetSkillDataByLevel(0).Cost *
+						                            Math.Pow(2, Math.Sqrt(0.75 * newLevel))),
+						_ => Math.Round(skillData.GetSkillDataByLevel(0).Cost *
+						                Math.Pow(2, Math.Sqrt(0.75 * newLevel))),
 					},
 					SkillByLevelCalculationType.Level => newLevel > skillData.MaxLevel ? 0 : skillData.GetSkillDataByLevel(newLevel).Cost,
 					_ => 0,

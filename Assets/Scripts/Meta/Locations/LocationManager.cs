@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Game.Configs.LevelConfigs;
 using Global.SaveSystem.SavableObjects;
 using UnityEngine;
 using UnityEngine.Events;
@@ -17,7 +19,7 @@ namespace Meta.Locations
 
 		public void Initialize(Progress progress, UnityAction<int, int> startLevelCallback)
 		{
-			_currentLocation = progress.CurrentLocation;
+			_currentLocation = Math.Min(progress.CurrentLocation, _locations.Count - 1);
 			InitLocation(progress, startLevelCallback);
 			InitializeSwitchLocationButtons();
 		}
@@ -71,7 +73,7 @@ namespace Meta.Locations
 				var currentLevel = progress.CurrentLevel;
 				
 				_locations[i].Initialize(locationState, currentLevel, level => startLevelCallback?.Invoke(locationNumber, level));
-				_locations[i].SetActive(locationNumber == progress.CurrentLocation);
+				_locations[i].SetActive(locationNumber == _currentLocation);
 			}
 		}
 	}

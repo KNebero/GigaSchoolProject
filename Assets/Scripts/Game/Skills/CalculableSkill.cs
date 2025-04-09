@@ -7,7 +7,7 @@ namespace Game.Skills
 	{
 		protected virtual int CalculateValue(int baseDamage, int level)
 		{
-			return (int) Math.Floor(baseDamage * (10 - 20 / Math.Log(level + 4.666, 2)));
+			return (int) Math.Round(baseDamage * (10 - 20 / Math.Log(level + 4.666, 2)));
 		}
 	}
 }

@@ -70,7 +70,7 @@ public class EndLevelSystem
 		
 		wallet = (Wallet)_saveSystem.GetData(SavableObjectType.Wallet);
 		level = _levelsConfig.GetLevel(_gameEnterParams.Location, _gameEnterParams.Level);
-		wallet.Coins += (int) Math.Floor(level.Reward * LevelData.FirstTimeMultiplier);
+		wallet.Coins += (int) Math.Round(level.Reward * LevelData.FirstTimeMultiplier);
 		_saveSystem.SaveData(SavableObjectType.Wallet);
 
 		_saveSystem.SaveData(SavableObjectType.Progress);
