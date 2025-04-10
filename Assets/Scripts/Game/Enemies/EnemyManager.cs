@@ -1,4 +1,5 @@
 using Game.Configs.EnemyConfigs;
+using Game.Configs.KNBConfig;
 using Game.Configs.LevelConfigs;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,6 +16,7 @@ namespace Game.Enemies
 		private HealthBar.HealthBar _healthBar;
 		private LevelData _levelData;
 		private int _currentEnemyIndex;
+		private EnemyType _currentEnemyType;
 
 		public event UnityAction<bool, bool> OnLevelPassed;
 
@@ -60,11 +62,12 @@ namespace Game.Enemies
 				_timer.OnTimerEnd += () => OnLevelPassed?.Invoke(false, true);
 			}
 			
-			var currentEnemyViewData = _enemiesConfig.GetEnemy(currentEnemy.Id);
+			var currentEnemyData = _enemiesConfig.GetEnemy(currentEnemy.Id);
+			_currentEnemyType = currentEnemyData.EnemyType;
 
 			InitHpBar(currentEnemy.Hp);
 
-			_currentEnemy.Initialize(currentEnemyViewData.Sprite, currentEnemy.Hp);
+			_currentEnemy.Initialize(currentEnemyData.Sprite, currentEnemy.Hp);
 		}
 
 		private void InitHpBar(float health)
@@ -76,7 +79,11 @@ namespace Game.Enemies
 		public void DamageCurrentEnemy(float damage)
 		{
 			_currentEnemy.DoDamage(damage);
-			Debug.Log($"Damaged. Current health is {_currentEnemy.GetHealth()}");
+		}
+
+		public EnemyType GetCurrentEnemyType()
+		{
+			return _currentEnemyType;
 		}
 	}
 }

@@ -355,6 +355,7 @@ MonoBehaviour:
   _goToMetaButton: {fileID: 8933590927023979549}
   _levelsConfig: {fileID: 11400000, guid: 7e02fed083874434186aa61cefe59374, type: 2}
   _skillsConfig: {fileID: 11400000, guid: d6ad2287c56c5084389b65a642e77d8d, type: 2}
+  _knbConfig: {fileID: 11400000, guid: 3c9c8b648392ea44bbed621756152563, type: 2}
 --- !u!1 &4035150233063766574
 GameObject:
   m_ObjectHideFlags: 0

@@ -119,11 +119,7 @@ namespace Meta.Shop
 			_wallet.Coins -= cost;
 			if (_openedSkills.GetSkillWithLevel(skillId) == null)
 			{
-				_openedSkills.Skills.Add(new SkillWithLevel()
-				{
-					Id = skillId,
-					Level = 0,
-				});
+				_openedSkills.GetOrCreateSkillWithLevel(skillId);
 			}
 			else
 			{

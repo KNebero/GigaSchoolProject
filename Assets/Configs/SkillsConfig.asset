@@ -41,7 +41,7 @@ MonoBehaviour:
       Cost: 50
   - SkillId: KnifeSkill
     CalculationType: 1
-    Trigger: 6
+    Trigger: 7
     MaxLevel: 10
     SkillLevels:
     - Level: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
       Cost: 50
   - SkillId: HammerSkill
     CalculationType: 1
-    Trigger: 6
+    Trigger: 8
     MaxLevel: 10
     SkillLevels:
     - Level: 0

@@ -1,6 +1,7 @@
 using System;
 using Game.ClickButton;
 using Game.Configs.EnemyConfigs;
+using Game.Configs.KNBConfig;
 using Game.Configs.LevelConfigs;
 using Game.Configs.SkillsConfigs;
 using Game.EndLevelWindow;
@@ -28,6 +29,7 @@ public class GameEntryPoint : EntryPoint
 	[SerializeField] private Button _goToMetaButton;
 	[SerializeField] private LevelsConfig _levelsConfig;
 	[SerializeField] private SkillsConfig _skillsConfig;
+	[SerializeField] private KNBConfig _knbConfig;
 	private GameEnterParams _gameEnterParams;
 	private CommonObject _commonObject;
 	private SkillSystem _skillSystem;
@@ -45,30 +47,16 @@ public class GameEntryPoint : EntryPoint
 
 		_gameEnterParams = gameEnterParams;
 
-		_clickButtonManager.Initialize();
 		_enemyManager.Initialize(_healthBar, _timer);
 		_endLevelWindow.Initialize(_timer, GoToMeta, RestartLevel);
 		
 		var openedSkills = (OpenedSkills) _commonObject.SaveSystem.GetData(SavableObjectType.OpenedSkills);
 		
-		_skillSystem = new SkillSystem(openedSkills, _skillsConfig, _enemyManager);
+		_skillSystem = new SkillSystem(openedSkills, _skillsConfig, _enemyManager, _knbConfig);
 		_endLevelSystem = new EndLevelSystem(_endLevelWindow, _commonObject.SaveSystem, _gameEnterParams, _levelsConfig);
 
-		_clickButtonManager.FlySwatterOnClicked += () =>
-		{
-			_skillSystem.ProcessSkill("FlySwatterSkill");
-			_skillSystem.InvokeTrigger(SkillTrigger.OnDamage);
-		};
-		_clickButtonManager.KnifeOnClicked += () =>
-		{
-			_skillSystem.ProcessSkill("KnifeSkill");
-			_skillSystem.InvokeTrigger(SkillTrigger.OnDamage);
-		};
-		_clickButtonManager.HammerOnClicked += () =>
-		{
-			_skillSystem.ProcessSkill("HammerSkill");
-			_skillSystem.InvokeTrigger(SkillTrigger.OnDamage);
-		};
+		_clickButtonManager.Initialize(_skillSystem);
+		
 		_enemyManager.OnLevelPassed += _endLevelSystem.LevelPassed;
 
 		_goToMetaButton.onClick.AddListener(GoToMeta);

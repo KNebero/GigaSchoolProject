@@ -20,7 +20,7 @@ namespace SceneManagement
 			commonObject.SaveSystem = new SaveSystem();
 			
 			var openedSkills = (OpenedSkills) commonObject.SaveSystem.GetData(SavableObjectType.OpenedSkills);
-			if (openedSkills.GetSkillWithLevel("FlySwatterSkill") == null)
+			if (openedSkills.GetOrCreateSkillWithLevel("FlySwatterSkill") == null)
 			{
 				openedSkills.Skills.Add(new SkillWithLevel()
 				{
@@ -28,7 +28,7 @@ namespace SceneManagement
 					Level = 0,
 				});
 			}
-			if (openedSkills.GetSkillWithLevel("KnifeSkill") == null)
+			if (openedSkills.GetOrCreateSkillWithLevel("KnifeSkill") == null)
 			{
 				openedSkills.Skills.Add(new SkillWithLevel()
 				{
@@ -36,7 +36,7 @@ namespace SceneManagement
 					Level = 0,
 				});
 			}
-			if (openedSkills.GetSkillWithLevel("HammerSkill") == null)
+			if (openedSkills.GetOrCreateSkillWithLevel("HammerSkill") == null)
 			{
 				openedSkills.Skills.Add(new SkillWithLevel()
 				{

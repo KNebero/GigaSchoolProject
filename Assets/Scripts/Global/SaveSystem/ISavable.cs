@@ -1,3 +1,8 @@
-﻿namespace Global.SaveSystem {
-    public interface ISavable {}
+﻿using System;
+
+namespace Global.SaveSystem
+{
+	public interface ISavable
+	{
+	}
 }

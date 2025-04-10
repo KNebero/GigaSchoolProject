@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Game.Configs.EnemyConfigs;
+using Game.Configs.KNBConfig;
 using Game.Configs.SkillsConfigs;
 using Game.Enemies;
 using Global.SaveSystem.SavableObjects;
@@ -18,11 +19,12 @@ namespace Game.Skills
 		private Dictionary<SkillTrigger, List<Skill>> _skillsByTrigger;
 		private Dictionary<string, Skill> _skillsByName;
 
-		public SkillSystem(OpenedSkills openedSkills, SkillsConfig skillsConfig, EnemyManager enemyManager)
+		public SkillSystem(OpenedSkills openedSkills, SkillsConfig skillsConfig, EnemyManager enemyManager, KNBConfig knbConfig)
 		{
 			_scope = new SkillScope()
 			{
 				EnemyManager = enemyManager,
+				KNBConfig = knbConfig,
 			};
 			_skillsConfig = skillsConfig;
 			_skillsByTrigger = new Dictionary<SkillTrigger, List<Skill>>();

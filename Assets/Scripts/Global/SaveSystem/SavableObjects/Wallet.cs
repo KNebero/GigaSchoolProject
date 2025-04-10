@@ -1,8 +1,10 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine.Events;
 
 namespace Global.SaveSystem.SavableObjects
 {
+	[Serializable]
 	public class Wallet : ISavable
 	{
 		[field: DoNotSerialize] public event UnityAction<Wallet> OnChanged;

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Global.SaveSystem.SavableObjects;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Global.SaveSystem
@@ -18,10 +19,11 @@ namespace Global.SaveSystem
 		}
 
 		private void LoadData() {
-			foreach (var (key, savableObject) in _savableObjects) {
+			var keys = new List<SavableObjectType>(_savableObjects.Keys);
+			foreach (var key in keys) {
 				if (!PlayerPrefs.HasKey(key.ToString())) continue;
 				var json = PlayerPrefs.GetString(key.ToString());
-				JsonUtility.FromJsonOverwrite(json, savableObject);
+				_savableObjects[key] = (ISavable) JsonConvert.DeserializeObject(json, _savableObjects[key].GetType());
 			}
 		}
 
@@ -31,14 +33,14 @@ namespace Global.SaveSystem
         
 		public void SaveData(SavableObjectType objectType) {
 			var objectToSave = _savableObjects[objectType];
-			var json = JsonUtility.ToJson(objectToSave);
+			var json = JsonConvert.SerializeObject(objectToSave);
 			PlayerPrefs.SetString(objectType.ToString(), json);
 			PlayerPrefs.Save();
 		}
 
 		public void SaveAll() {
 			foreach (var (key, value) in _savableObjects) {
-				var json = JsonUtility.ToJson(value);
+				var json = JsonConvert.SerializeObject(value);
 				PlayerPrefs.SetString(key.ToString(), json);
 			}
             

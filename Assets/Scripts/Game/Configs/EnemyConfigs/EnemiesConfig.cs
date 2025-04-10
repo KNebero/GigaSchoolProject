@@ -8,9 +8,9 @@ namespace Game.Configs.EnemyConfigs
 	public class EnemiesConfig : ScriptableObject
 	{
 		public Enemy EnemyPrefab;
-		public List<EnemyViewData> Enemies;
+		public List<EnemyData> Enemies;
 		
-		public EnemyViewData GetEnemy(string id)
+		public EnemyData GetEnemy(string id)
 		{
 			// Создать словарь
 			foreach (var enemyData in Enemies)

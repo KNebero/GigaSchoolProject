@@ -7,6 +7,9 @@ namespace Game.Skills
 		OnTime = 3,
 		OnTimerLeft = 4,
 		OnStart = 5,
-		None = 6,
+		OnFlySwatterSkill = 6,
+		OnKnifeSkill = 7,
+		OnHammerSkill = 8,
+		None = 999,
 	}
 }
