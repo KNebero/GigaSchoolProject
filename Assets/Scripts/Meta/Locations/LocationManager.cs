@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Game.Configs.LevelConfigs;
+using Global.SaveSystem;
 using Global.SaveSystem.SavableObjects;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,11 +16,17 @@ namespace Meta.Locations
 		
 		[SerializeField] private List<Location> _locations;
 
+		private SaveSystem _saveSystem;
+		private Cash _cash;
 		private int _currentLocation;
 
-		public void Initialize(Progress progress, UnityAction<int, int> startLevelCallback)
+		public void Initialize(SaveSystem saveSystem, UnityAction<int, int> startLevelCallback)
 		{
-			_currentLocation = Math.Min(progress.CurrentLocation, _locations.Count - 1);
+			_saveSystem = saveSystem;
+			var progress = (Progress)saveSystem.GetData(SavableObjectType.Progress);
+			_cash = (Cash)saveSystem.GetData(SavableObjectType.Cash);
+			
+			_currentLocation = Math.Min(_cash.CurrentLocation, _locations.Count - 1);
 			InitLocation(progress, startLevelCallback);
 			InitializeSwitchLocationButtons();
 		}
@@ -44,6 +51,9 @@ namespace Meta.Locations
 			
 			_locations[_currentLocation - 1].gameObject.SetActive(false);
 			_locations[_currentLocation].gameObject.SetActive(true);
+			
+			_cash.CurrentLocation = _currentLocation;
+			_saveSystem.SaveData(SavableObjectType.Cash);
 		}
 
 		private void ShowPreviousLocation()
@@ -57,6 +67,9 @@ namespace Meta.Locations
 			
 			_locations[_currentLocation + 1].gameObject.SetActive(false);
 			_locations[_currentLocation].gameObject.SetActive(true);
+			
+			_cash.CurrentLocation = _currentLocation;
+			_saveSystem.SaveData(SavableObjectType.Cash);
 		}
 
 		private void InitLocation(Progress progress, UnityAction<int, int> startLevelCallback)

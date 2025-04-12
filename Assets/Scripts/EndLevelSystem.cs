@@ -29,7 +29,8 @@ public class EndLevelSystem
 		if (isPassed)
 		{
 			TrySaveProgress();
-			_endLevelWindow.ShowWinWindow(isBoss);
+			_endLevelWindow.ShowWinWindow(isBoss,
+				_levelsConfig.GetLevel(_gameEnterParams.Location, _gameEnterParams.Level).Reward);
 		}
 		else
 		{
@@ -52,10 +53,10 @@ public class EndLevelSystem
 			level = _levelsConfig.GetLevel(_gameEnterParams.Location, _gameEnterParams.Level);
 			wallet.Coins += level.Reward;
 			_saveSystem.SaveData(SavableObjectType.Wallet);
-			
+
 			return;
 		}
-		
+
 		var maxLevel = _levelsConfig.GetMaxLevelOnLocation(progress.CurrentLocation);
 
 		if (progress.CurrentLevel >= maxLevel)
@@ -67,10 +68,10 @@ public class EndLevelSystem
 		{
 			++progress.CurrentLevel;
 		}
-		
+
 		wallet = (Wallet)_saveSystem.GetData(SavableObjectType.Wallet);
 		level = _levelsConfig.GetLevel(_gameEnterParams.Location, _gameEnterParams.Level);
-		wallet.Coins += (int) Math.Round(level.Reward * LevelData.FirstTimeMultiplier);
+		wallet.Coins += (int)Math.Round(level.Reward * LevelData.FirstTimeMultiplier);
 		_saveSystem.SaveData(SavableObjectType.Wallet);
 
 		_saveSystem.SaveData(SavableObjectType.Progress);

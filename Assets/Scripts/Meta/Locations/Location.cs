@@ -18,16 +18,17 @@ namespace Meta.Locations
 					ProgressState.Passed  => ProgressState.Passed,
 					ProgressState.Closed  => ProgressState.Closed,
 					ProgressState.Current => level < currentLevel ? ProgressState.Passed :
-						level == currentLevel ? ProgressState.Current : ProgressState.Closed
+						level == currentLevel ? ProgressState.Current : ProgressState.Closed,
+					_ => ProgressState.Closed,
 				};
 
 				if (pinState == ProgressState.Closed)
 				{
-					_pins[i].Initialize(level, pinState, null);
+					_pins[i].Initialize(level + 1, pinState, null);
 				}
 				else
 				{
-					_pins[i].Initialize(level, pinState, () => startLevelCallBack?.Invoke(level));
+					_pins[i].Initialize(level + 1, pinState, () => startLevelCallBack?.Invoke(level));
 				}
 			}
 		}

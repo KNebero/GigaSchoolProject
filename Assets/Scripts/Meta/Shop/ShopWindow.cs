@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Game.Configs.EnemyConfigs;
 using Game.Configs.SkillsConfigs;
 using Game.Skills;
+using Global.Formulas;
 using Global.SaveSystem;
 using Global.SaveSystem.SavableObjects;
 using TMPro;
@@ -86,27 +87,16 @@ namespace Meta.Shop
 				var skillWithLevel = _openedSkills.GetSkillWithLevel(skillData.SkillId);
 				var newLevel = (skillWithLevel?.Level ?? -1) + 1;
 
-				var cost = (int)(skillData.CalculationType switch
+				var cost = (skillData.CalculationType switch
 				{
-					SkillByLevelCalculationType.Formula => skillData.SkillId switch
-					{
-						"FlySwatterSkill" => Math.Round(skillData.GetSkillDataByLevel(0).Cost *
-						                                  Math.Pow(2, Math.Sqrt(0.75 * newLevel))),
-						"KnifeSkill" => Math.Round(skillData.GetSkillDataByLevel(0).Cost *
-						                           Math.Pow(2, Math.Sqrt(0.75 * newLevel))),
-						"HammerSkill" => Math.Round(skillData.GetSkillDataByLevel(0).Cost *
-						                            Math.Pow(2, Math.Sqrt(0.75 * newLevel))),
-						_ => Math.Round(skillData.GetSkillDataByLevel(0).Cost *
-						                Math.Pow(2, Math.Sqrt(0.75 * newLevel))),
-					},
+					SkillByLevelCalculationType.Formula => SkillsFormulas.CalculateCost(skillData.GetSkillDataByLevel(0).Cost, newLevel),
 					SkillByLevelCalculationType.Level => newLevel > skillData.MaxLevel ? 0 : skillData.GetSkillDataByLevel(newLevel).Cost,
 					_ => 0,
 				});
-
-
+				
 				_itemsMap[skillData.SkillId].Initialize((skillId) => SkillUpgrade(skillId, cost),
-					skillData.SkillId,
-					"",
+					skillData.DisplayName,
+					skillData.Description,
 					newLevel, // Текущий уровень (в индекс с 0) + 1 == Новый уровень
 					cost,
 					_wallet.Coins >= cost,

@@ -6,7 +6,7 @@ using UnityEngine.Scripting;
 namespace Game.Skills.SkillVariants
 {
 	[Preserve]
-	public class FlySwatterSkill : DamageSkill
+	public class FlySwatterSkill : DamageSkill, ICritable
 	{
 		public override void Initialize(SkillScope scope, SkillData skillData, int level)
 		{

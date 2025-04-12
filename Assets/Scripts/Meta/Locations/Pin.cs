@@ -23,7 +23,8 @@ namespace Meta.Locations
 			{
 				ProgressState.Closed  => _closedLevel,
 				ProgressState.Passed  => _passedLevel,
-				ProgressState.Current => _currentLevel
+				ProgressState.Current => _currentLevel,
+				_ => _closedLevel
 			};
 			
 			_button.onClick.AddListener(() => clickCallback?.Invoke());

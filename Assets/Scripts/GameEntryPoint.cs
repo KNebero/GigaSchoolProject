@@ -48,19 +48,36 @@ public class GameEntryPoint : EntryPoint
 		_gameEnterParams = gameEnterParams;
 
 		_enemyManager.Initialize(_healthBar, _timer);
-		_endLevelWindow.Initialize(_timer, GoToMeta, RestartLevel);
-		
-		var openedSkills = (OpenedSkills) _commonObject.SaveSystem.GetData(SavableObjectType.OpenedSkills);
-		
+		var nextLevel = _levelsConfig.GetNextLevelOnLocation(gameEnterParams.Location, gameEnterParams.Level);
+		if (nextLevel == -1)
+		{
+			if (gameEnterParams.Location == _levelsConfig.GetMaxLocation())
+				_endLevelWindow.Initialize(_timer, GoToMeta, RestartLevel);
+			else
+				_endLevelWindow.Initialize(_timer, () =>
+				{
+					((Cash)_commonObject.SaveSystem.GetData(SavableObjectType.Cash)).CurrentLocation++;
+					_commonObject.SaveSystem.SaveData(SavableObjectType.Cash);
+					GoToMeta();
+				}, RestartLevel);
+		}
+		else
+		{
+			_endLevelWindow.Initialize(_timer, NextLevel, RestartLevel);
+		}
+
+		var openedSkills = (OpenedSkills)_commonObject.SaveSystem.GetData(SavableObjectType.OpenedSkills);
+
 		_skillSystem = new SkillSystem(openedSkills, _skillsConfig, _enemyManager, _knbConfig);
-		_endLevelSystem = new EndLevelSystem(_endLevelWindow, _commonObject.SaveSystem, _gameEnterParams, _levelsConfig);
+		_endLevelSystem =
+			new EndLevelSystem(_endLevelWindow, _commonObject.SaveSystem, _gameEnterParams, _levelsConfig);
 
 		_clickButtonManager.Initialize(_skillSystem);
-		
+
 		_enemyManager.OnLevelPassed += _endLevelSystem.LevelPassed;
 
 		_goToMetaButton.onClick.AddListener(GoToMeta);
-		
+
 		_commonObject.AudioManager.PlayClip(AudioGameNames.Background);
 		StartLevel();
 	}
@@ -75,9 +92,16 @@ public class GameEntryPoint : EntryPoint
 			location = maxLocationAndLevel.x;
 			level = maxLocationAndLevel.y;
 		}
+
 		var levelData = _levelsConfig.GetLevel(location, level);
 
 		_enemyManager.StartLevel(levelData);
+	}
+
+	public void NextLevel()
+	{
+		_commonObject.SceneLoader.LoadGameplayScene(new GameEnterParams(_gameEnterParams.Location,
+			_gameEnterParams.Level + 1));
 	}
 
 	public void RestartLevel()

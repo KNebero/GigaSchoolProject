@@ -10,5 +10,6 @@ namespace Game.Configs.EnemyConfigs
 		public string Id;
 		public Sprite Sprite;
 		public EnemyType EnemyType;
+		public float BaseHealth;
 	}
 }

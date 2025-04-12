@@ -25,8 +25,7 @@ namespace Meta
 		public override void Run(SceneEnterParams enterParams)
 		{
 			_commonObject = GameObject.FindWithTag(Tags.CommonObject).GetComponent<CommonObject>();
-			var progress = (Progress) _commonObject.SaveSystem.GetData(SavableObjectType.Progress);
-			_locationManager.Initialize(progress, StartLevel);
+			_locationManager.Initialize(_commonObject.SaveSystem, StartLevel);
 			_shopWindow.Initialize(_commonObject.SaveSystem, _skillsConfig);
 			_shopButton.onClick.AddListener(() => _shopWindow.gameObject.SetActive(true));
 			_commonObject.AudioManager.PlayClip(AudioMetaNames.Background);

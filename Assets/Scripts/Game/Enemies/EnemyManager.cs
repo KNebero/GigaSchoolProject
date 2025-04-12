@@ -1,6 +1,7 @@
 using Game.Configs.EnemyConfigs;
 using Game.Configs.KNBConfig;
 using Game.Configs.LevelConfigs;
+using Global.Formulas;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -64,10 +65,11 @@ namespace Game.Enemies
 			
 			var currentEnemyData = _enemiesConfig.GetEnemy(currentEnemy.Id);
 			_currentEnemyType = currentEnemyData.EnemyType;
+			var health = EnemyFormulas.CalculateHealth(currentEnemyData.BaseHealth, _levelData.Location, _levelData.LevelNumber);
+			
+			InitHpBar(health);
 
-			InitHpBar(currentEnemy.Hp);
-
-			_currentEnemy.Initialize(currentEnemyData.Sprite, currentEnemy.Hp);
+			_currentEnemy.Initialize(currentEnemyData.Sprite, health);
 		}
 
 		private void InitHpBar(float health)

@@ -1,3 +1,4 @@
+using Extensions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -16,15 +17,15 @@ namespace Meta.Shop
 		public string SkillId;
 
 		public void Initialize(UnityAction<string> onClick,
-			string label,
+			string displayName,
 			string description,
 			int level,
 			int cost,
 			bool isEnough,
 			bool isMaxLevel)
 		{
-			_buyButton.onClick.AddListener(() => onClick?.Invoke(SkillId));
-			_label.text = label;
+			_buyButton.SubscribeOnly(() => onClick?.Invoke(SkillId));
+			_label.text = displayName;
 			_description.text = description;
 			_level.text = level.ToString();
 			if (isMaxLevel)
