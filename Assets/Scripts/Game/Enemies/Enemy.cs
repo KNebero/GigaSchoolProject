@@ -7,12 +7,12 @@ namespace Game.Enemies
 	public class Enemy : MonoBehaviour
 	{
 		[SerializeField] private Image _image;
-	
+
 		private float _health;
-	
+
 		public event UnityAction<float> OnDamaged;
 		public event UnityAction OnDead;
-	
+
 		public void Initialize(Sprite sprite, float health)
 		{
 			_health = health;
@@ -25,11 +25,12 @@ namespace Game.Enemies
 			{
 				damage = _health;
 				_health = 0;
-			
+
 				OnDamaged?.Invoke(damage);
 				OnDead?.Invoke();
 				return;
 			}
+
 			_health -= damage;
 			OnDamaged?.Invoke(damage);
 		}

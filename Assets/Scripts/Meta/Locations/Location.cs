@@ -15,8 +15,8 @@ namespace Meta.Locations
 				var level = i;
 				var pinState = locationState switch
 				{
-					ProgressState.Passed  => ProgressState.Passed,
-					ProgressState.Closed  => ProgressState.Closed,
+					ProgressState.Passed => ProgressState.Passed,
+					ProgressState.Closed => ProgressState.Closed,
 					ProgressState.Current => level < currentLevel ? ProgressState.Passed :
 						level == currentLevel ? ProgressState.Current : ProgressState.Closed,
 					_ => ProgressState.Closed,

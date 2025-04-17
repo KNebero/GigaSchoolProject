@@ -18,7 +18,7 @@ namespace Game.Skills
 		public override void Initialize(SkillScope skillScope, SkillData skillData, int level)
 		{
 			base.Initialize(skillScope, skillData, level);
-			_enemyManager = skillScope.EnemyManager;
+			_enemyManager = skillScope.GameScope.EnemyManager;
 			_knb = skillScope.KNBConfig;
 			_playerStats = skillScope.PlayerStats;
 

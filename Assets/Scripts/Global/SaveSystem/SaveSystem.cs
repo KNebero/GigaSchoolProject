@@ -5,11 +5,14 @@ using UnityEngine;
 
 namespace Global.SaveSystem
 {
-	public class SaveSystem {
+	public class SaveSystem
+	{
 		private Dictionary<SavableObjectType, ISavable> _savableObjects;
 
-		public SaveSystem() {
-			_savableObjects = new() {
+		public SaveSystem()
+		{
+			_savableObjects = new()
+			{
 				{ SavableObjectType.Wallet, new Wallet() },
 				{ SavableObjectType.Progress, new Progress() },
 				{ SavableObjectType.OpenedSkills, new OpenedSkills() },
@@ -19,32 +22,38 @@ namespace Global.SaveSystem
 			LoadData();
 		}
 
-		private void LoadData() {
+		private void LoadData()
+		{
 			var keys = new List<SavableObjectType>(_savableObjects.Keys);
-			foreach (var key in keys) {
+			foreach (var key in keys)
+			{
 				if (!PlayerPrefs.HasKey(key.ToString())) continue;
 				var json = PlayerPrefs.GetString(key.ToString());
-				_savableObjects[key] = (ISavable) JsonConvert.DeserializeObject(json, _savableObjects[key].GetType());
+				_savableObjects[key] = (ISavable)JsonConvert.DeserializeObject(json, _savableObjects[key].GetType());
 			}
 		}
 
-		public ISavable GetData(SavableObjectType objectType) {
+		public ISavable GetData(SavableObjectType objectType)
+		{
 			return _savableObjects[objectType];
 		}
-        
-		public void SaveData(SavableObjectType objectType) {
+
+		public void SaveData(SavableObjectType objectType)
+		{
 			var objectToSave = _savableObjects[objectType];
 			var json = JsonConvert.SerializeObject(objectToSave);
 			PlayerPrefs.SetString(objectType.ToString(), json);
 			PlayerPrefs.Save();
 		}
 
-		public void SaveAll() {
-			foreach (var (key, value) in _savableObjects) {
+		public void SaveAll()
+		{
+			foreach (var (key, value) in _savableObjects)
+			{
 				var json = JsonConvert.SerializeObject(value);
 				PlayerPrefs.SetString(key.ToString(), json);
 			}
-            
+
 			PlayerPrefs.Save();
 		}
 	}

@@ -10,7 +10,7 @@ namespace SceneManagement
 		public void Awake()
 		{
 			if (GameObject.FindGameObjectWithTag(Tags.CommonObject)) return;
-			
+
 			var commonObjectPrefab = Resources.Load<CommonObject>("CommonObject");
 			var commonObject = Instantiate(commonObjectPrefab);
 			DontDestroyOnLoad(commonObject);
@@ -18,8 +18,8 @@ namespace SceneManagement
 			commonObject.AudioManager.LoadOnce();
 			commonObject.SceneLoader.Initialize(commonObject.AudioManager);
 			commonObject.SaveSystem = new SaveSystem();
-			
-			var openedSkills = (OpenedSkills) commonObject.SaveSystem.GetData(SavableObjectType.OpenedSkills);
+
+			var openedSkills = (OpenedSkills)commonObject.SaveSystem.GetData(SavableObjectType.OpenedSkills);
 			if (openedSkills.GetOrCreateSkillWithLevel("FlySwatterSkill") == null)
 			{
 				openedSkills.Skills.Add(new SkillWithLevel()
@@ -28,6 +28,7 @@ namespace SceneManagement
 					Level = 0,
 				});
 			}
+
 			if (openedSkills.GetOrCreateSkillWithLevel("KnifeSkill") == null)
 			{
 				openedSkills.Skills.Add(new SkillWithLevel()
@@ -36,6 +37,7 @@ namespace SceneManagement
 					Level = 0,
 				});
 			}
+
 			if (openedSkills.GetOrCreateSkillWithLevel("HammerSkill") == null)
 			{
 				openedSkills.Skills.Add(new SkillWithLevel()
@@ -44,8 +46,9 @@ namespace SceneManagement
 					Level = 0,
 				});
 			}
+
 			commonObject.SaveSystem.SaveData(SavableObjectType.OpenedSkills);
-			
+
 			commonObject.SceneLoader.LoadMetaScene();
 		}
 	}

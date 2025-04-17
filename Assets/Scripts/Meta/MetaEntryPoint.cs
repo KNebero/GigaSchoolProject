@@ -18,9 +18,9 @@ namespace Meta
 		[SerializeField] private ShopWindow _shopWindow;
 		[SerializeField] private Button _shopButton;
 		[SerializeField] private SkillsConfig _skillsConfig;
-		
+
 		private CommonObject _commonObject;
-		
+
 
 		public override void Run(SceneEnterParams enterParams)
 		{

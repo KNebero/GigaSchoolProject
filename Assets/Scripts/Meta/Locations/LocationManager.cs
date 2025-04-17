@@ -13,7 +13,7 @@ namespace Meta.Locations
 	{
 		[SerializeField] private Button _previousButton;
 		[SerializeField] private Button _nextButton;
-		
+
 		[SerializeField] private List<Location> _locations;
 
 		private SaveSystem _saveSystem;
@@ -25,7 +25,7 @@ namespace Meta.Locations
 			_saveSystem = saveSystem;
 			var progress = (Progress)saveSystem.GetData(SavableObjectType.Progress);
 			_cash = (Cash)saveSystem.GetData(SavableObjectType.Cash);
-			
+
 			_currentLocation = Math.Min(_cash.CurrentLocation, _locations.Count - 1);
 			InitLocation(progress, startLevelCallback);
 			InitializeSwitchLocationButtons();
@@ -35,7 +35,7 @@ namespace Meta.Locations
 		{
 			_previousButton.onClick.AddListener(ShowPreviousLocation);
 			_nextButton.onClick.AddListener(ShowNextLocation);
-			
+
 			_previousButton.interactable = _currentLocation > 0;
 			_nextButton.interactable = _currentLocation < _locations.Count - 1;
 		}
@@ -48,10 +48,10 @@ namespace Meta.Locations
 
 			_previousButton.interactable = true;
 			_nextButton.interactable = _currentLocation < _locations.Count - 1;
-			
+
 			_locations[_currentLocation - 1].gameObject.SetActive(false);
 			_locations[_currentLocation].gameObject.SetActive(true);
-			
+
 			_cash.CurrentLocation = _currentLocation;
 			_saveSystem.SaveData(SavableObjectType.Cash);
 		}
@@ -64,10 +64,10 @@ namespace Meta.Locations
 
 			_previousButton.interactable = _currentLocation > 0;
 			_nextButton.interactable = true;
-			
+
 			_locations[_currentLocation + 1].gameObject.SetActive(false);
 			_locations[_currentLocation].gameObject.SetActive(true);
-			
+
 			_cash.CurrentLocation = _currentLocation;
 			_saveSystem.SaveData(SavableObjectType.Cash);
 		}
@@ -78,14 +78,15 @@ namespace Meta.Locations
 			{
 				var locationNumber = i;
 				ProgressState locationState = progress.CurrentLocation > locationNumber
-						? ProgressState.Passed
-						: progress.CurrentLocation == locationNumber
+					? ProgressState.Passed
+					: progress.CurrentLocation == locationNumber
 						? ProgressState.Current
 						: ProgressState.Closed;
-				
+
 				var currentLevel = progress.CurrentLevel;
-				
-				_locations[i].Initialize(locationState, currentLevel, level => startLevelCallback?.Invoke(locationNumber, level));
+
+				_locations[i].Initialize(locationState, currentLevel,
+					level => startLevelCallback?.Invoke(locationNumber, level));
 				_locations[i].SetActive(locationNumber == _currentLocation);
 			}
 		}

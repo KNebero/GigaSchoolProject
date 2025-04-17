@@ -7,9 +7,6 @@ using Game.Configs.SkillsConfigs;
 using Game.Enemies;
 using Global.Formulas;
 using Global.SaveSystem.SavableObjects;
-using Unity.Collections;
-using UnityEditor.Experimental.GraphView;
-using UnityEngine.iOS;
 
 namespace Game.Skills
 {
@@ -20,12 +17,12 @@ namespace Game.Skills
 		private Dictionary<SkillTrigger, List<Skill>> _skillsByTrigger;
 		private Dictionary<string, Skill> _skillsByName;
 
-		public SkillSystem(OpenedSkills openedSkills, SkillsConfig skillsConfig, EnemyManager enemyManager,
-			KNBConfig knbConfig)
+		public SkillSystem(OpenedSkills openedSkills, SkillsConfig skillsConfig,
+			KNBConfig knbConfig, GameScope gameScope)
 		{
 			_scope = new SkillScope()
 			{
-				EnemyManager = enemyManager,
+				GameScope = gameScope,
 				KNBConfig = knbConfig,
 				PlayerStats = new PlayerStats()
 				{
@@ -36,7 +33,7 @@ namespace Game.Skills
 							openedSkills.GetSkillWithLevel("CritChance").Level),
 					CritDamagePercent = openedSkills.GetSkillWithLevel("CritDamage") == null
 						? 0
-						: (int)SkillsFormulas.CalculateCritChance(
+						: (int)SkillsFormulas.CalculateCritDamage(
 							skillsConfig.GetSkillDataByLevel("CritDamage", 0).Value,
 							openedSkills.GetSkillWithLevel("CritDamage").Level),
 				}

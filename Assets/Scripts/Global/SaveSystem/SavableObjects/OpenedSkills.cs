@@ -15,7 +15,7 @@ namespace Global.SaveSystem.SavableObjects
 		public SkillWithLevel GetSkillWithLevel(string skillId)
 		{
 			if (_skillsMap.IsNullOrEmpty()) FillSkillsMap();
-			
+
 			return _skillsMap.ContainsKey(skillId) ? _skillsMap[skillId] : null;
 		}
 

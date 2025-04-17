@@ -34,6 +34,7 @@ namespace Meta.Shop
 				_buyButton.interactable = false;
 				return;
 			}
+
 			_cost.text = cost.ToString();
 
 			_cost.color = isEnough ? Color.green : Color.red;

@@ -31,14 +31,14 @@ namespace Game.Enemies
 		{
 			_levelData = levelData;
 			_currentEnemyIndex = -1;
-			
+
 			if (!_currentEnemy)
 			{
 				_currentEnemy = Instantiate(_enemiesConfig.EnemyPrefab, _enemyContainer);
 				_currentEnemy.OnDead += SpawnEnemy;
 				_currentEnemy.OnDamaged += _healthBar.DecreaseValue;
 			}
-			
+
 			SpawnEnemy();
 		}
 
@@ -52,6 +52,7 @@ namespace Game.Enemies
 				_timer.Stop();
 				return;
 			}
+
 			var currentEnemy = _levelData.Enemies[_currentEnemyIndex];
 
 			_timer.SetActive(currentEnemy.IsBoss);
@@ -62,11 +63,12 @@ namespace Game.Enemies
 				_timer.Play();
 				_timer.OnTimerEnd += () => OnLevelPassed?.Invoke(false, true);
 			}
-			
+
 			var currentEnemyData = _enemiesConfig.GetEnemy(currentEnemy.Id);
 			_currentEnemyType = currentEnemyData.EnemyType;
-			var health = EnemyFormulas.CalculateHealth(currentEnemyData.BaseHealth, _levelData.Location, _levelData.LevelNumber);
-			
+			var health = EnemyFormulas.CalculateHealth(currentEnemyData.BaseHealth, _levelData.Location,
+				_levelData.LevelNumber);
+
 			InitHpBar(health);
 
 			_currentEnemy.Initialize(currentEnemyData.Sprite, health);

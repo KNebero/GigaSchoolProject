@@ -10,61 +10,55 @@ namespace Game.Timer
 		[SerializeField] private TextMeshProUGUI _timerText;
 		[SerializeField] private Slider _timerSlider;
 
-		private float _maxTime;
 		private float _currentTime;
-		private bool _isPlaying;
+		public bool IsPlaying { get; private set; }
 
-		public float MaxTime
-		{
-			get => _maxTime;
-		}
+		public float MaxTime { get; private set; }
 
 		public float CurrentTime
 		{
 			get => _currentTime;
+			set => _currentTime = Mathf.Clamp(value, 0f, MaxTime);
 		}
 
-		public float TimePast
-		{
-			get => _maxTime - _currentTime;
-		}
+		public float TimePast => MaxTime - _currentTime;
 
 		public event UnityAction OnTimerEnd;
 
 		public void Initialize(float maxTime)
 		{
-			_maxTime = maxTime;
+			MaxTime = maxTime;
 			_currentTime = maxTime;
 			_timerText.text = _currentTime.ToString("00:00");
-			_timerSlider.maxValue = _maxTime;
-			_timerSlider.value = _maxTime;
+			_timerSlider.maxValue = MaxTime;
+			_timerSlider.value = MaxTime;
 			_timerSlider.minValue = 0;
 		}
 
 		public void Play()
 		{
-			_isPlaying = true;
+			IsPlaying = true;
 		}
 
 		public void Pause()
 		{
-			_isPlaying = false;
+			IsPlaying = false;
 		}
 
 		public void Resume()
 		{
-			_isPlaying = true;
+			IsPlaying = true;
 		}
 
 		public void Stop()
 		{
-			_isPlaying = false;
+			IsPlaying = false;
 			OnTimerEnd = null;
 		}
 
 		public void FixedUpdate()
 		{
-			if (!_isPlaying) return;
+			if (!IsPlaying) return;
 
 			var deltaTime = Time.fixedDeltaTime;
 

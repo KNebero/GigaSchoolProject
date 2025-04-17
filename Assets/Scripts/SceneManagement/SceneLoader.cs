@@ -9,12 +9,12 @@ namespace SceneManagement
 	{
 		[SerializeField] private GameObject _loadingScreen;
 		private AudioManager _audioManager;
-		
+
 		public void Initialize(AudioManager audioManager)
 		{
 			_audioManager = audioManager;
 		}
-		
+
 		public void LoadMetaScene(SceneEnterParams enterParams = null)
 		{
 			StartCoroutine(LoadAndStartScene(enterParams, Scenes.MetaScene));
@@ -24,7 +24,7 @@ namespace SceneManagement
 		{
 			StartCoroutine(LoadAndStartScene(enterParams, Scenes.LevelScene));
 		}
-		
+
 		private IEnumerator LoadAndStartScene(SceneEnterParams enterParams, string sceneToLoad = "")
 		{
 			_loadingScreen.SetActive(true);
@@ -34,7 +34,7 @@ namespace SceneManagement
 
 			var sceneEntryPoint = FindFirstObjectByType<EntryPoint>();
 			sceneEntryPoint.Run(enterParams);
-			
+
 			_loadingScreen.SetActive(false);
 		}
 

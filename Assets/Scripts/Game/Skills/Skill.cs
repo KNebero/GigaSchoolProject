@@ -11,7 +11,12 @@ namespace Game.Skills
 			_skillData = skillData;
 		}
 
-		public virtual void OnSkillRegistered() {}
-		public virtual void SkillProcess() {}
+		public virtual void OnSkillRegistered()
+		{
+		}
+
+		public virtual void SkillProcess()
+		{
+		}
 	}
 }

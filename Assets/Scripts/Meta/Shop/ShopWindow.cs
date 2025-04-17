@@ -89,11 +89,14 @@ namespace Meta.Shop
 
 				var cost = (skillData.CalculationType switch
 				{
-					SkillByLevelCalculationType.Formula => SkillsFormulas.CalculateCost(skillData.GetSkillDataByLevel(0).Cost, newLevel),
-					SkillByLevelCalculationType.Level => newLevel > skillData.MaxLevel ? 0 : skillData.GetSkillDataByLevel(newLevel).Cost,
+					SkillByLevelCalculationType.Formula => SkillsFormulas.CalculateCost(
+						skillData.GetSkillDataByLevel(0).Cost, newLevel),
+					SkillByLevelCalculationType.Level => newLevel > skillData.MaxLevel
+						? 0
+						: skillData.GetSkillDataByLevel(newLevel).Cost,
 					_ => 0,
 				});
-				
+
 				_itemsMap[skillData.SkillId].Initialize((skillId) => SkillUpgrade(skillId, cost),
 					skillData.DisplayName,
 					skillData.Description,

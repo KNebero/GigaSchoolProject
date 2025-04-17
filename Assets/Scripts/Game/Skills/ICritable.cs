@@ -1,4 +1,6 @@
 namespace Game.Skills
 {
-	public interface ICritable {}
+	public interface ICritable
+	{
+	}
 }

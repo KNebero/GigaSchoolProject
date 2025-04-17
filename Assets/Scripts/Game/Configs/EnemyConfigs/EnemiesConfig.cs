@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Game.Configs.EnemyConfigs
 {
-	[CreateAssetMenu(menuName="Configs/EnemiesConfig", fileName="EnemiesConfig")]
+	[CreateAssetMenu(menuName = "Configs/EnemiesConfig", fileName = "EnemiesConfig")]
 	public class EnemiesConfig : ScriptableObject
 	{
 		public Enemy EnemyPrefab;
 		public List<EnemyData> Enemies;
-		
+
 		public EnemyData GetEnemy(string id)
 		{
 			// Создать словарь
@@ -20,7 +20,7 @@ namespace Game.Configs.EnemyConfigs
 					return enemyData;
 				}
 			}
-			
+
 			Debug.LogError($"Couldn't find enemy with id = {id}");
 			return null;
 		}

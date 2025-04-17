@@ -24,5 +24,20 @@ namespace Global.Formulas
 		{
 			return baseCritDamage * (level + 1);
 		}
+
+		public static float CalculateCoinsMultiplier(float baseCoinsMultiplier, int level)
+		{
+			return baseCoinsMultiplier * (level + 1);
+		}
+
+		public static int CalculateTimerIncreaseChance(float baseChance, int level)
+		{
+			return (int)baseChance * (level + 1);
+		}
+
+		public static int CalculateTimerIncrease(float baseTime, int level)
+		{
+			return (int)Mathf.Round(baseTime * (1 + 0.5f * (level + 1)));
+		}
 	}
 }

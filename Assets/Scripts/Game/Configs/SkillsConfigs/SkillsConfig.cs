@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Configs.SkillsConfigs
 {
-	[CreateAssetMenu(menuName="Configs/SkillsConfig", fileName="SkillsConfig")]
+	[CreateAssetMenu(menuName = "Configs/SkillsConfig", fileName = "SkillsConfig")]
 	public class SkillsConfig : ScriptableObject
 	{
 		public List<SkillData> Skills;
@@ -18,7 +18,7 @@ namespace Game.Configs.SkillsConfigs
 			{
 				FillSkillDataMap();
 			}
-			
+
 			return _skillDataMap[skillId];
 		}
 
@@ -37,7 +37,7 @@ namespace Game.Configs.SkillsConfigs
 			{
 				FillSkillDataByLevelMap();
 			}
-			
+
 			return _skillDataByLevelMap[skillId][level];
 		}
 
@@ -50,6 +50,7 @@ namespace Game.Configs.SkillsConfigs
 				{
 					_skillDataByLevelMap[skillData.SkillId] = new Dictionary<int, SkillDataByLevel>();
 				}
+
 				foreach (var skillDataByLevel in skillData.SkillLevels)
 				{
 					_skillDataByLevelMap[skillData.SkillId][skillDataByLevel.Level] = skillDataByLevel;

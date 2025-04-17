@@ -10,6 +10,7 @@ namespace Global.SaveSystem.SavableObjects
 		[field: DoNotSerialize] public event UnityAction<Wallet> OnChanged;
 
 		private int _coins;
+
 		public int Coins
 		{
 			get => _coins;

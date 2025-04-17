@@ -51,12 +51,12 @@ namespace Game.Configs.LevelConfigs
 		public int GetNextLevelOnLocation(int location, int level)
 		{
 			if (_levelsMap.IsNullOrEmpty()) FillLevelMap();
-			
+
 			foreach (var levelNumber in _levelsMap[location].Keys)
 			{
 				if (levelNumber == level + 1) return levelNumber;
 			}
-			
+
 			return -1;
 		}
 

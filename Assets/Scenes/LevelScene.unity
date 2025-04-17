@@ -427,6 +427,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 19999395587737464, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -1800
+      objectReference: {fileID: 0}
+    - target: {fileID: 19999395587737464, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -700
+      objectReference: {fileID: 0}
     - target: {fileID: 437125712139269163, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -437,10 +445,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 437125712139269163, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 437125712139269163, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
-      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1682085036900399840, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
@@ -535,10 +539,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameScreen
       objectReference: {fileID: 0}
-    - target: {fileID: 5570402308442523961, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5688198470461518720, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -617,6 +617,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7892096806329985259, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8499470437463554914, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8658890275827523211, guid: b9654a8dfa28f06478ce0998c3d33f71, type: 3}
+      propertyPath: m_UiScaleMode
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
