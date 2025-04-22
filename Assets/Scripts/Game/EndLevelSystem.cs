@@ -73,6 +73,7 @@ namespace Game
 			wallet = (Wallet)_saveSystem.GetData(SavableObjectType.Wallet);
 			CoinReward = (int)Math.Round(CoinReward * LevelData.FirstTimeMultiplier);
 			wallet.Coins += CoinReward;
+			
 			_saveSystem.SaveData(SavableObjectType.Wallet);
 
 			_saveSystem.SaveData(SavableObjectType.Progress);

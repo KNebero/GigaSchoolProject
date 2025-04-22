@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f21997a762634b57bc9ba6e8f0674455, type: 3}
+  m_Name: en
+  m_EditorClassIdentifier: 
+  Items:
+  - Key: FlySwatterSkillDisplayName
+    Value: Fly Swatter
+  - Key: FlySwatterSkillDescription
+    Value: Effective against <color=#08B71F>fast</color> enemies,\nineffective against
+      <color="red">small</color> enemies
+  - Key: KnifeSkillDisplayName
+    Value: Kitchen knife
+  - Key: KnifeSkillDescription
+    Value: Effective against <color=#08B71F>small</color> enemies,\nineffective against
+      enemies with <color="red">armor</color>
+  - Key: HammerSkillDisplayName
+    Value: Hammer
+  - Key: HammerSkillDescription
+    Value: Effective against enemies with <color=#08B71F>armor</color> enemies,\nineffective
+      against <color="red">fast</color> enemies
+  - Key: AdditionalDamageSkillDisplayName
+    Value: Strength
+  - Key: AdditionalDamageSkillDescription
+    Value: Deals a small amount of additional true damage
+  - Key: CritChanceDisplayName
+    Value: Crit chance
+  - Key: CritChanceDescription
+    Value: Increases chance of landing a critical hit
+  - Key: CritDamageDisplayName
+    Value: Crit damage
+  - Key: CritDamageDescription
+    Value: Increases critical damage dealt
+  - Key: AdditionalCoinsSkillDisplayName
+    Value: Midas's hand
+  - Key: AdditionalCoinsSkillDescription
+    Value: Increases coins received
+  - Key: TimeIncreasingSkillDisplayName
+    Value: Poison Resistance
+  - Key: TimeIncreasingSkillDescription
+    Value: Has a chance to increase time during boss battles
+  - Key: ShowAdConfirmationQuestion
+    Value: Are you sure you want to watch an Advertisement?

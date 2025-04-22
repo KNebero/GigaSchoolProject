@@ -24,11 +24,11 @@ namespace Meta.Locations
 
 				if (pinState == ProgressState.Closed)
 				{
-					_pins[i].Initialize(level + 1, pinState, null);
+					_pins[i].Initialize(pinState, null);
 				}
 				else
 				{
-					_pins[i].Initialize(level + 1, pinState, () => startLevelCallBack?.Invoke(level));
+					_pins[i].Initialize(pinState, () => startLevelCallBack?.Invoke(level));
 				}
 			}
 		}

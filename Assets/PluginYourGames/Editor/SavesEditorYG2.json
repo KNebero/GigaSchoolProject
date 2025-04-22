@@ -1,0 +1,23 @@
+{
+    "stringKeys": [
+        "OpenedSkills",
+        "Wallet"
+    ],
+    "stringValues": [
+        "{\"Skills\":[{\"Id\":\"FlySwatterSkill\",\"Level\":0},{\"Id\":\"KnifeSkill\",\"Level\":0},{\"Id\":\"HammerSkill\",\"Level\":0}]}",
+        "{\"Coins\":650}"
+    ],
+    "floatKeys": [],
+    "floatValues": [],
+    "intKeys": [],
+    "intValues": [],
+    "intExample": 5,
+    "strExample": "Hello!",
+    "boolExample": [
+        false,
+        false,
+        false,
+        false
+    ],
+    "idSave": 13
+}

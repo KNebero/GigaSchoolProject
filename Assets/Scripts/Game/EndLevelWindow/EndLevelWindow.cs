@@ -65,7 +65,7 @@ namespace Game.EndLevelWindow
 			_infoBox.color = _winInfoColor;
 			if (isBoss)
 			{
-				_infoText.text = "Вы победили противника за " + _timer.TimePast.ToString("00:00") + "\n\n";
+				_infoText.text = "Вы победили противника за " + _timer.TimePast.ToString("00.00") + "\n\n";
 			}
 			else
 			{

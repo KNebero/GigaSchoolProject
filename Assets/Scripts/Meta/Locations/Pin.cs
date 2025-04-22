@@ -15,10 +15,8 @@ namespace Meta.Locations
 		[SerializeField] private Color _passedLevel;
 		[SerializeField] private Color _closedLevel;
 
-		public void Initialize(int levelNumber, ProgressState progressState, UnityAction clickCallback)
+		public void Initialize(ProgressState progressState, UnityAction clickCallback)
 		{
-			_text.text = $"Ур. {levelNumber}";
-
 			_image.color = progressState switch
 			{
 				ProgressState.Closed => _closedLevel,

@@ -1,7 +1,9 @@
 using System;
 using Global.SaveSystem;
 using Global.SaveSystem.SavableObjects;
+using Global.Translator;
 using UnityEngine;
+using YG;
 
 namespace SceneManagement
 {
@@ -48,6 +50,8 @@ namespace SceneManagement
 			}
 
 			commonObject.SaveSystem.SaveData(SavableObjectType.OpenedSkills);
+
+			TranslationManager.SetLanguage(YG2.lang);
 
 			commonObject.SceneLoader.LoadMetaScene();
 		}

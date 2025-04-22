@@ -9,10 +9,8 @@ namespace Game.ClickButton
 		[SerializeField] private Image _image;
 		[SerializeField] private Button _button;
 
-		public void Initialize(Sprite sprite, ColorBlock colorBlock)
+		public void Initialize()
 		{
-			_image.sprite = sprite;
-			_button.colors = colorBlock;
 		}
 
 		public void SubscribeOnClick(UnityAction action)

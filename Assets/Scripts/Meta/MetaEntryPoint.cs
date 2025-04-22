@@ -9,6 +9,7 @@ using Meta.Shop;
 using SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 namespace Meta
 {
@@ -21,13 +22,16 @@ namespace Meta
 
 		private CommonObject _commonObject;
 
-
 		public override void Run(SceneEnterParams enterParams)
 		{
 			_commonObject = GameObject.FindWithTag(Tags.CommonObject).GetComponent<CommonObject>();
 			_locationManager.Initialize(_commonObject.SaveSystem, StartLevel);
 			_shopWindow.Initialize(_commonObject.SaveSystem, _skillsConfig);
-			_shopButton.onClick.AddListener(() => _shopWindow.gameObject.SetActive(true));
+			_shopButton.onClick.AddListener(() =>
+			{
+				YG2.InterstitialAdvShow();
+				_shopWindow.gameObject.SetActive(true);
+			});
 			_commonObject.AudioManager.PlayClip(AudioMetaNames.Background);
 		}
 

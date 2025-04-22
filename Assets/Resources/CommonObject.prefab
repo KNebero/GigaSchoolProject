@@ -577,7 +577,7 @@ GameObject:
   - component: {fileID: 3764035834153723370}
   - component: {fileID: 1472603194625352423}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -785,3 +785,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SceneLoader: {fileID: 6344860943144102534}
   AudioManager: {fileID: 7388975622552099130}
+  ConfirmationWindow: {fileID: 0}

@@ -1,13 +1,17 @@
 using System;
 using System.Collections.Generic;
+using Extensions;
 using Game.Configs.EnemyConfigs;
 using Game.Configs.SkillsConfigs;
 using Game.Skills;
 using Global.Formulas;
 using Global.SaveSystem;
 using Global.SaveSystem.SavableObjects;
+using Global.Translator;
+using Meta.RewardedAd;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
@@ -17,6 +21,7 @@ namespace Meta.Shop
 	{
 		[SerializeField] private Button _closeButton;
 		[SerializeField] private TextMeshProUGUI _walletView;
+		[SerializeField] private RewardedAdManager _rewardedAdManager;
 
 		[Serializable]
 		public struct ButtonTab
@@ -26,8 +31,10 @@ namespace Meta.Shop
 		}
 
 		[SerializeField] private List<ButtonTab> _tabs;
+		[SerializeField] private Button _firstTabButton;
 
 		[SerializeField] private List<SkillItem> _items;
+		[SerializeField] private AdItem _adItem;
 
 		private Dictionary<string, SkillItem> _itemsMap = new Dictionary<string, SkillItem>();
 
@@ -44,12 +51,17 @@ namespace Meta.Shop
 			_wallet = (Wallet)saveSystem.GetData(SavableObjectType.Wallet);
 
 			_walletView.SetText(_wallet.Coins.ToString());
-			_wallet.OnChanged += (wallet) => { _walletView.SetText(wallet.Coins.ToString()); };
+			_wallet.OnChanged += (wallet) => _walletView.SetText(wallet.Coins.ToString());
 			_closeButton.onClick.AddListener(() => gameObject.SetActive(false));
+
+			_rewardedAdManager.Initialize(callback => EnableRewardedButton(callback), DisableRewardedButton,
+				GetAdvReward);
 
 			InitializeItemsMap();
 
 			InitializeTabsSwitching();
+			_firstTabButton.onClick.Invoke();
+			
 			ShowShopItems();
 		}
 
@@ -98,8 +110,8 @@ namespace Meta.Shop
 				});
 
 				_itemsMap[skillData.SkillId].Initialize((skillId) => SkillUpgrade(skillId, cost),
-					skillData.DisplayName,
-					skillData.Description,
+					TranslationManager.Translate($"{skillData.SkillId}DisplayName"),
+					TranslationManager.Translate($"{skillData.SkillId}Description"),
 					newLevel, // Текущий уровень (в индекс с 0) + 1 == Новый уровень
 					cost,
 					_wallet.Coins >= cost,
@@ -123,6 +135,24 @@ namespace Meta.Shop
 			_saveSystem.SaveData(SavableObjectType.Wallet);
 
 			ShowShopItems();
+		}
+
+		public void EnableRewardedButton(UnityAction callback)
+		{
+			_adItem.Button.interactable = true;
+			_adItem.Button.SubscribeOnly(() => callback?.Invoke());
+		}
+
+		public void DisableRewardedButton()
+		{
+			_adItem.Button.interactable = false;
+			_adItem.Button.onClick.RemoveAllListeners();
+		}
+
+		private void GetAdvReward()
+		{
+			_wallet.Coins += _adItem.Reward;
+			_saveSystem.SaveData(SavableObjectType.Wallet);
 		}
 	}
 }

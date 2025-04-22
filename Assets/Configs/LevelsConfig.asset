@@ -91,7 +91,7 @@ MonoBehaviour:
     - Id: boss_0
       Hp: 50
       IsBoss: 1
-      BossTime: 10
+      BossTime: 15
     Reward: 30
   - Location: 1
     LevelNumber: 0
@@ -171,5 +171,5 @@ MonoBehaviour:
     - Id: boss_0
       Hp: 75
       IsBoss: 1
-      BossTime: 15
+      BossTime: 12
     Reward: 40
