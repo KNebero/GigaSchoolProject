@@ -29,7 +29,6 @@ namespace SceneManagement
 
 			//commonObject.SaveSystem.SaveData(SavableObjectType.OpenedSkills);
 
-			YG2.lang = "en";
 			TranslationManager.SetLanguage(YG2.lang);
 
 			commonObject.SceneLoader.LoadMetaScene();
