@@ -1,11 +1,15 @@
 {
     "stringKeys": [
         "OpenedSkills",
-        "Wallet"
+        "Wallet",
+        "Cash",
+        "Progress"
     ],
     "stringValues": [
-        "{\"Skills\":[{\"Id\":\"FlySwatterSkill\",\"Level\":0},{\"Id\":\"KnifeSkill\",\"Level\":0},{\"Id\":\"HammerSkill\",\"Level\":0}]}",
-        "{\"Coins\":650}"
+        "{\"Skills\":[{\"Id\":\"FlySwatterSkill\",\"Level\":1},{\"Id\":\"KnifeSkill\",\"Level\":1},{\"Id\":\"HammerSkill\",\"Level\":1},{\"Id\":\"AdditionalDamageSkill\",\"Level\":1},{\"Id\":\"CritChance\",\"Level\":1},{\"Id\":\"CritDamage\",\"Level\":0},{\"Id\":\"AdditionalCoinsSkill\",\"Level\":1},{\"Id\":\"TimeIncreasingSkill\",\"Level\":0}]}",
+        "{\"Coins\":926}",
+        "{\"CurrentLocation\":0,\"TutorialCompleted\":true}",
+        "{\"CurrentLocation\":1,\"CurrentLevel\":0}"
     ],
     "floatKeys": [],
     "floatValues": [],
@@ -19,5 +23,5 @@
         false,
         false
     ],
-    "idSave": 13
+    "idSave": 179
 }

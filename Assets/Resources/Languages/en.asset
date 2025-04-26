@@ -50,3 +50,38 @@ MonoBehaviour:
     Value: Has a chance to increase time during boss battles
   - Key: ShowAdConfirmationQuestion
     Value: Are you sure you want to watch an Advertisement?
+  - Key: FirstLocation
+    Value: Your house
+  - Key: SecondLocation
+    Value: Nilson's house
+  - Key: ThirdLocation
+    Value: Susami's house
+  - Key: FourthLocation
+    Value: Volley's house
+  - Key: FifthLocation
+    Value: Mayor's house
+  - Key: GoToMetaConfirmation
+    Value: Leave level and go to map?
+  - Key: Boss0_0
+    Value: Elite Knight Buzz
+  - Key: Boss1_0
+    Value: Knight of the yellow and white stripes
+  - Key: Boss2_0
+    Value: General of the wasp army
+  - Key: Boss2_1
+    Value: Queen Wasp's right hand
+  - Key: Boss3_0
+    Value: Son of Queen Wasp - Saveliy
+  - Key: Boss3_1
+    Value: Daughter of the Queen of Wasps - Catherine
+  - Key: Boss4_0
+    Value: The Wasp Queen
+  - Key: LosePhrase0
+    Value: Don't worry, next time it will definitely work out!
+  - Key: LosePhrase1
+    Value: The faster you tap, the faster the enemy will die.
+  - Key: WinPhraseIfBoss
+    Value: You defeated your opponent in %TimePassed%<br><br>You earned %CoinsEarned%
+      coins
+  - Key: WinPhraseIfNotBoss
+    Value: You earned %CoinsEarned% coins

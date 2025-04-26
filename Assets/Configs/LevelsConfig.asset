@@ -13,163 +13,608 @@ MonoBehaviour:
   m_Name: LevelsConfig
   m_EditorClassIdentifier: 
   _levels:
-  - Location: 0
+  - Id: 0_0
+    Location: 0
     LevelNumber: 0
     Enemies:
     - Id: enemy_0
       Hp: 20
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     Reward: 5
-  - Location: 0
+  - Id: 0_1
+    Location: 0
     LevelNumber: 1
     Enemies:
     - Id: enemy_0
       Hp: 20
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     - Id: enemy_1
       Hp: 30
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     Reward: 8
-  - Location: 0
+  - Id: 0_2
+    Location: 0
     LevelNumber: 2
     Enemies:
     - Id: enemy_1
       Hp: 30
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     - Id: enemy_2
       Hp: 30
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     Reward: 10
-  - Location: 0
+  - Id: 0_3
+    Location: 0
     LevelNumber: 3
     Enemies:
     - Id: enemy_2
       Hp: 35
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     - Id: enemy_2
       Hp: 35
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     Reward: 12
-  - Location: 0
+  - Id: 0_4
+    Location: 0
     LevelNumber: 4
     Enemies:
     - Id: enemy_0
       Hp: 25
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     - Id: enemy_1
       Hp: 30
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     - Id: enemy_2
       Hp: 35
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     Reward: 13
-  - Location: 0
+  - Id: 0_5
+    Location: 0
     LevelNumber: 5
     Enemies:
     - Id: enemy_1
       Hp: 35
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     - Id: enemy_2
       Hp: 40
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     Reward: 15
-  - Location: 0
+  - Id: 0_6
+    Location: 0
     LevelNumber: 6
     Enemies:
     - Id: boss_0
       Hp: 50
       IsBoss: 1
       BossTime: 15
+      BossNameTranslationKey: Boss0_0
     Reward: 30
-  - Location: 1
+  - Id: 1_0
+    Location: 1
     LevelNumber: 0
     Enemies:
     - Id: enemy_0
       Hp: 30
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     Reward: 15
-  - Location: 1
+  - Id: 1_1
+    Location: 1
     LevelNumber: 1
     Enemies:
     - Id: enemy_0
       Hp: 30
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     - Id: enemy_1
       Hp: 35
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     Reward: 16
-  - Location: 1
+  - Id: 1_2
+    Location: 1
     LevelNumber: 2
     Enemies:
     - Id: enemy_1
       Hp: 35
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     - Id: enemy_1
       Hp: 35
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     Reward: 18
-  - Location: 1
+  - Id: 1_3
+    Location: 1
     LevelNumber: 3
     Enemies:
     - Id: enemy_0
       Hp: 35
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     - Id: enemy_1
       Hp: 40
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     Reward: 20
-  - Location: 1
+  - Id: 1_4
+    Location: 1
     LevelNumber: 4
     Enemies:
     - Id: enemy_0
       Hp: 35
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     - Id: enemy_1
       Hp: 40
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     - Id: enemy_2
       Hp: 45
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     Reward: 23
-  - Location: 1
+  - Id: 1_5
+    Location: 1
     LevelNumber: 5
     Enemies:
     - Id: enemy_2
       Hp: 45
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     - Id: enemy_2
       Hp: 45
       IsBoss: 0
       BossTime: 0
+      BossNameTranslationKey: 
     Reward: 25
-  - Location: 1
+  - Id: 1_6
+    Location: 1
     LevelNumber: 6
     Enemies:
     - Id: boss_0
       Hp: 75
       IsBoss: 1
       BossTime: 12
+      BossNameTranslationKey: Boss1_0
     Reward: 40
+  - Id: 2_0
+    Location: 2
+    LevelNumber: 0
+    Enemies:
+    - Id: enemy_0
+      Hp: 30
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    Reward: 35
+  - Id: 2_1
+    Location: 2
+    LevelNumber: 1
+    Enemies:
+    - Id: enemy_0
+      Hp: 30
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_1
+      Hp: 35
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    Reward: 40
+  - Id: 2_2
+    Location: 2
+    LevelNumber: 2
+    Enemies:
+    - Id: enemy_0
+      Hp: 35
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_1
+      Hp: 40
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    Reward: 40
+  - Id: 2_3
+    Location: 2
+    LevelNumber: 3
+    Enemies:
+    - Id: enemy_1
+      Hp: 35
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_2
+      Hp: 40
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    Reward: 45
+  - Id: 2_4
+    Location: 2
+    LevelNumber: 4
+    Enemies:
+    - Id: enemy_1
+      Hp: 35
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_2
+      Hp: 40
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_1
+      Hp: 35
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    Reward: 45
+  - Id: 2_5
+    Location: 2
+    LevelNumber: 5
+    Enemies:
+    - Id: enemy_2
+      Hp: 45
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_2
+      Hp: 45
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    Reward: 50
+  - Id: 2_6
+    Location: 2
+    LevelNumber: 6
+    Enemies:
+    - Id: boss_0
+      Hp: 75
+      IsBoss: 1
+      BossTime: 30
+      BossNameTranslationKey: Boss2_0
+    - Id: boss_0
+      Hp: 75
+      IsBoss: 1
+      BossTime: 30
+      BossNameTranslationKey: Boss2_1
+    Reward: 70
+  - Id: 3_0
+    Location: 3
+    LevelNumber: 0
+    Enemies:
+    - Id: enemy_0
+      Hp: 35
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_1
+      Hp: 40
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    Reward: 50
+  - Id: 3_1
+    Location: 3
+    LevelNumber: 1
+    Enemies:
+    - Id: enemy_1
+      Hp: 35
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_2
+      Hp: 40
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    Reward: 68
+  - Id: 3_2
+    Location: 3
+    LevelNumber: 2
+    Enemies:
+    - Id: enemy_2
+      Hp: 40
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_1
+      Hp: 35
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_2
+      Hp: 35
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    Reward: 75
+  - Id: 3_3
+    Location: 3
+    LevelNumber: 3
+    Enemies:
+    - Id: enemy_2
+      Hp: 45
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_2
+      Hp: 45
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_0
+      Hp: 45
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    Reward: 77
+  - Id: 3_4
+    Location: 3
+    LevelNumber: 4
+    Enemies:
+    - Id: enemy_1
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_2
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_0
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_1
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    Reward: 85
+  - Id: 3_5
+    Location: 3
+    LevelNumber: 5
+    Enemies:
+    - Id: enemy_2
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_0
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_1
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_2
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    Reward: 95
+  - Id: 3_6
+    Location: 3
+    LevelNumber: 6
+    Enemies:
+    - Id: boss_0
+      Hp: 75
+      IsBoss: 1
+      BossTime: 40
+      BossNameTranslationKey: Boss3_0
+    - Id: boss_0
+      Hp: 75
+      IsBoss: 1
+      BossTime: 40
+      BossNameTranslationKey: Boss3_1
+    Reward: 150
+  - Id: 4_0
+    Location: 4
+    LevelNumber: 0
+    Enemies:
+    - Id: enemy_0
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_0
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_0
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    Reward: 100
+  - Id: 4_1
+    Location: 4
+    LevelNumber: 1
+    Enemies:
+    - Id: enemy_1
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_0
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_2
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    Reward: 110
+  - Id: 4_2
+    Location: 4
+    LevelNumber: 2
+    Enemies:
+    - Id: enemy_1
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_2
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_0
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_1
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    Reward: 120
+  - Id: 4_3
+    Location: 4
+    LevelNumber: 3
+    Enemies:
+    - Id: enemy_1
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_2
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_2
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_1
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    Reward: 130
+  - Id: 4_4
+    Location: 4
+    LevelNumber: 4
+    Enemies:
+    - Id: enemy_1
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_2
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_0
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_1
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_2
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    Reward: 140
+  - Id: 4_5
+    Location: 4
+    LevelNumber: 5
+    Enemies:
+    - Id: enemy_1
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_2
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_0
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_0
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_2
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    - Id: enemy_1
+      Hp: 75
+      IsBoss: 0
+      BossTime: 0
+      BossNameTranslationKey: 
+    Reward: 150
+  - Id: 4_6
+    Location: 4
+    LevelNumber: 6
+    Enemies:
+    - Id: boss_0
+      Hp: 75
+      IsBoss: 1
+      BossTime: 60
+      BossNameTranslationKey: Boss4_0
+    Reward: 200

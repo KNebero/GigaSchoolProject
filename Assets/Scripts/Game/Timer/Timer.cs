@@ -45,11 +45,6 @@ namespace Game.Timer
 			IsPlaying = false;
 		}
 
-		public void Resume()
-		{
-			IsPlaying = true;
-		}
-
 		public void Stop()
 		{
 			IsPlaying = false;

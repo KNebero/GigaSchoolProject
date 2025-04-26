@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Extensions;
 using Game.Configs.LevelConfigs;
 using Global.SaveSystem;
 using Global.SaveSystem.SavableObjects;
@@ -17,17 +18,25 @@ namespace Meta.Locations
 		[SerializeField] private List<Location> _locations;
 
 		private SaveSystem _saveSystem;
+		private Progress _progress;
 		private Cash _cash;
 		private int _currentLocation;
 
 		public void Initialize(SaveSystem saveSystem, UnityAction<int, int> startLevelCallback)
 		{
 			_saveSystem = saveSystem;
-			var progress = (Progress)saveSystem.GetData(SavableObjectType.Progress);
+			_progress = (Progress)saveSystem.GetData(SavableObjectType.Progress);
 			_cash = (Cash)saveSystem.GetData(SavableObjectType.Cash);
 
-			_currentLocation = Math.Min(_cash.CurrentLocation, _locations.Count - 1);
-			InitLocation(progress, startLevelCallback);
+			if (_cash.CurrentLocation >= _locations.Count)
+			{
+				_cash.CurrentLocation = _locations.Count - 1;
+				_saveSystem.SaveData(SavableObjectType.Cash);
+			}
+
+			_currentLocation = _cash.CurrentLocation;
+
+			InitLocation(_progress, startLevelCallback);
 			InitializeSwitchLocationButtons();
 		}
 
@@ -36,18 +45,20 @@ namespace Meta.Locations
 			_previousButton.onClick.AddListener(ShowPreviousLocation);
 			_nextButton.onClick.AddListener(ShowNextLocation);
 
-			_previousButton.interactable = _currentLocation > 0;
-			_nextButton.interactable = _currentLocation < _locations.Count - 1;
+			_previousButton.SetActive(_currentLocation > 0);
+			_nextButton.SetActive(_currentLocation < _locations.Count - 1 &&
+			                      _currentLocation < _progress.CurrentLocation);
 		}
 
 		private void ShowNextLocation()
 		{
-			if (_currentLocation >= _locations.Count - 1) return;
+			if (_currentLocation >= _locations.Count - 1 || _currentLocation >= _progress.CurrentLocation) return;
 
 			++_currentLocation;
 
-			_previousButton.interactable = true;
-			_nextButton.interactable = _currentLocation < _locations.Count - 1;
+			_previousButton.SetActive(true);
+			_nextButton.SetActive(_currentLocation < _locations.Count - 1 &&
+			                      _currentLocation < _progress.CurrentLocation);
 
 			_locations[_currentLocation - 1].gameObject.SetActive(false);
 			_locations[_currentLocation].gameObject.SetActive(true);
@@ -62,8 +73,8 @@ namespace Meta.Locations
 
 			--_currentLocation;
 
-			_previousButton.interactable = _currentLocation > 0;
-			_nextButton.interactable = true;
+			_previousButton.SetActive(_currentLocation > 0);
+			_nextButton.SetActive(true);
 
 			_locations[_currentLocation + 1].gameObject.SetActive(false);
 			_locations[_currentLocation].gameObject.SetActive(true);

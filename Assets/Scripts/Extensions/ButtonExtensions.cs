@@ -10,5 +10,10 @@ namespace Extensions
 			button.onClick.RemoveAllListeners();
 			button.onClick.AddListener(action);
 		}
+
+		public static void SetActive(this Button button, bool active)
+		{
+			button.gameObject.SetActive(active);
+		}
 	}
 }

@@ -2,8 +2,11 @@ using Game.Configs.EnemyConfigs;
 using Game.Configs.KNBConfig;
 using Game.Configs.LevelConfigs;
 using Global.Formulas;
+using Global.Translator;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Game.Enemies
 {
@@ -11,20 +14,29 @@ namespace Game.Enemies
 	{
 		[SerializeField] private Transform _enemyContainer;
 		[SerializeField] private EnemiesConfig _enemiesConfig;
+		[SerializeField] private EnemyTypeIconsConfig _enemyTypeIcons;
 
 		private Timer.Timer _timer;
-		private Enemy _currentEnemy;
 		private HealthBar.HealthBar _healthBar;
+		private Image _enemyTypeIcon;
+		private TextMeshProUGUI _currentEnemyNumber;
+		private TextMeshProUGUI _totalEnemiesAmount;
+		private TextMeshProUGUI _bossName;
+		private Enemy _currentEnemy;
 		private LevelData _levelData;
 		private int _currentEnemyIndex;
 		private EnemyType _currentEnemyType;
 
 		public event UnityAction<bool, bool> OnLevelPassed;
 
-		public void Initialize(HealthBar.HealthBar healthBar, Timer.Timer timer)
+		public void Initialize(GameScope gameScope)
 		{
-			_healthBar = healthBar;
-			_timer = timer;
+			_healthBar = gameScope.HealthBar;
+			_timer = gameScope.Timer;
+			_enemyTypeIcon = gameScope.EnemyTypeIcon;
+			_bossName = gameScope.BossName;
+			_currentEnemyNumber = gameScope.CurrentEnemyNumber;
+			_totalEnemiesAmount = gameScope.TotalEnemiesAmount;
 		}
 
 		public void StartLevel(LevelData levelData)
@@ -38,6 +50,8 @@ namespace Game.Enemies
 				_currentEnemy.OnDead += SpawnEnemy;
 				_currentEnemy.OnDamaged += _healthBar.DecreaseValue;
 			}
+			
+			_totalEnemiesAmount.text = _levelData.Enemies.Count.ToString();
 
 			SpawnEnemy();
 		}
@@ -55,9 +69,14 @@ namespace Game.Enemies
 
 			var currentEnemy = _levelData.Enemies[_currentEnemyIndex];
 
+			_currentEnemyNumber.text = (_currentEnemyIndex + 1).ToString();
+			
 			_timer.SetActive(currentEnemy.IsBoss);
+			_bossName.gameObject.SetActive(currentEnemy.IsBoss);
+			
 			if (currentEnemy.IsBoss)
 			{
+				_bossName.text = TranslationManager.Translate(currentEnemy.BossNameTranslationKey);
 				_timer.Initialize(currentEnemy.BossTime);
 				_timer.SetActive(true);
 				_timer.Play();
@@ -68,6 +87,12 @@ namespace Game.Enemies
 			_currentEnemyType = currentEnemyData.EnemyType;
 			var health = EnemyFormulas.CalculateHealth(currentEnemyData.BaseHealth, _levelData.Location,
 				_levelData.LevelNumber);
+			
+			_enemyTypeIcon.gameObject.SetActive(currentEnemyData.EnemyType != EnemyType.None);
+			if (_enemyTypeIcon.gameObject.activeSelf)
+			{
+				_enemyTypeIcon.sprite = _enemyTypeIcons.GetSprite(currentEnemyData.EnemyType);
+			}
 
 			InitHpBar(health);
 

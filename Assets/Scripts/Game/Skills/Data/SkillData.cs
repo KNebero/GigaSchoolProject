@@ -12,8 +12,6 @@ namespace Game.Skills.Data
 		public SkillByLevelCalculationType CalculationType;
 		public SkillTrigger Trigger;
 		public int MaxLevel;
-		public string DisplayName;
-		public string Description;
 		[FormerlySerializedAs("SkillLevel")] public List<SkillDataByLevel> SkillLevels;
 
 		public SkillDataByLevel GetSkillDataByLevel(int level)

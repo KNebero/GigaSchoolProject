@@ -18,6 +18,7 @@ namespace Game.Skills.SkillVariants
 		{
 			base.Initialize(scope, skillData, level);
 			_enemyManager = scope.GameScope.EnemyManager;
+			_timer = scope.GameScope.Timer;
 			
 			_time = _skillData.CalculationType switch
 			{

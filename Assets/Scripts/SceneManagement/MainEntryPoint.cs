@@ -22,35 +22,14 @@ namespace SceneManagement
 			commonObject.SaveSystem = new SaveSystem();
 
 			var openedSkills = (OpenedSkills)commonObject.SaveSystem.GetData(SavableObjectType.OpenedSkills);
-			if (openedSkills.GetOrCreateSkillWithLevel("FlySwatterSkill") == null)
-			{
-				openedSkills.Skills.Add(new SkillWithLevel()
-				{
-					Id = "FlySwatterSkill",
-					Level = 0,
-				});
-			}
 
-			if (openedSkills.GetOrCreateSkillWithLevel("KnifeSkill") == null)
-			{
-				openedSkills.Skills.Add(new SkillWithLevel()
-				{
-					Id = "KnifeSkill",
-					Level = 0,
-				});
-			}
+			openedSkills.GetOrCreateSkillWithLevel("FlySwatterSkill");
+			openedSkills.GetOrCreateSkillWithLevel("KnifeSkill");
+			openedSkills.GetOrCreateSkillWithLevel("HammerSkill");
 
-			if (openedSkills.GetOrCreateSkillWithLevel("HammerSkill") == null)
-			{
-				openedSkills.Skills.Add(new SkillWithLevel()
-				{
-					Id = "HammerSkill",
-					Level = 0,
-				});
-			}
+			//commonObject.SaveSystem.SaveData(SavableObjectType.OpenedSkills);
 
-			commonObject.SaveSystem.SaveData(SavableObjectType.OpenedSkills);
-
+			YG2.lang = "en";
 			TranslationManager.SetLanguage(YG2.lang);
 
 			commonObject.SceneLoader.LoadMetaScene();

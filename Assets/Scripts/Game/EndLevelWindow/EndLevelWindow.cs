@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Extensions;
+using Global.Translator;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,29 +11,19 @@ namespace Game.EndLevelWindow
 {
 	public class EndLevelWindow : MonoBehaviour
 	{
-		[SerializeField] private TextMeshProUGUI _header;
+		[SerializeField] private TextMeshProUGUI _winHeader;
+		[SerializeField] private TextMeshProUGUI _loseHeader;
 
-		[SerializeField] private Button _nextOrRestartButton;
+		[SerializeField] private Button _nextButton;
+		[SerializeField] private Button _restartButton;
 
 		[SerializeField] private Image _infoBox;
 		[SerializeField] private TextMeshProUGUI _infoText;
 
-		[SerializeField] private TextMeshProUGUI _nextOrRestartButtonText;
-
 		[SerializeField] private List<string> _losePhrases;
-
-		[SerializeField] private string _winHeader;
-		[SerializeField] private Color _winHeaderColor;
-		[SerializeField] private string _loseHeader;
-		[SerializeField] private Color _loseHeaderColor;
 
 		[SerializeField] private Color _winInfoColor;
 		[SerializeField] private Color _loseInfoColor;
-
-		[SerializeField] private string _nextButtonText;
-		[SerializeField] private Color _nextButtonColor;
-		[SerializeField] private string _restartButtonText;
-		[SerializeField] private Color _restartButtonColor;
 
 		private Timer.Timer _timer;
 
@@ -48,14 +40,17 @@ namespace Game.EndLevelWindow
 		public void ShowLoseWindow(bool isBoss)
 		{
 			_infoBox.color = _loseInfoColor;
-			_infoText.text = _losePhrases.Count == 0 ? "" : _losePhrases[Random.Range(0, _losePhrases.Count)];
+			_infoText.text = _losePhrases.Count == 0
+				? ""
+				: TranslationManager.Translate(_losePhrases[Random.Range(0, _losePhrases.Count)]);
 
-			_header.text = _loseHeader;
-			_header.color = _loseHeaderColor;
-			_nextOrRestartButton.image.color = _restartButtonColor;
-			_nextOrRestartButtonText.text = _restartButtonText;
+			_winHeader.gameObject.SetActive(false);
+			_loseHeader.gameObject.SetActive(true);
 
-			_nextOrRestartButton.onClick.AddListener(RestartLevel);
+			_nextButton.SetActive(false);
+			_restartButton.SetActive(true);
+			
+			_restartButton.SubscribeOnly(RestartLevel);
 
 			gameObject.SetActive(true);
 		}
@@ -63,23 +58,17 @@ namespace Game.EndLevelWindow
 		public void ShowWinWindow(bool isBoss, int coinsEarned)
 		{
 			_infoBox.color = _winInfoColor;
-			if (isBoss)
-			{
-				_infoText.text = "Вы победили противника за " + _timer.TimePast.ToString("00.00") + "\n\n";
-			}
-			else
-			{
-				_infoText.text = "";
-			}
+			_infoText.text = TranslationManager.Translate($"WinPhraseIf{(isBoss ? "" : "Not")}Boss")
+				.Replace("%TimePassed%", _timer.TimePast.ToString("00.00"))
+				.Replace("%CoinsEarned%", coinsEarned.ToString());
 
-			_infoText.text += $"Вы заработали {coinsEarned} монет";
+			_winHeader.gameObject.SetActive(true);
+			_loseHeader.gameObject.SetActive(false);
 
-			_header.text = _winHeader;
-			_header.color = _winHeaderColor;
-			_nextOrRestartButton.image.color = _nextButtonColor;
-			_nextOrRestartButtonText.text = _nextButtonText;
+			_nextButton.SetActive(true);
+			_restartButton.SetActive(false);
 
-			_nextOrRestartButton.onClick.AddListener(NextLevel);
+			_nextButton.SubscribeOnly(NextLevel);
 
 			gameObject.SetActive(true);
 		}

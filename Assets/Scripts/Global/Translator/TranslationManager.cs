@@ -8,28 +8,49 @@ namespace Global.Translator
 	public class TranslationManager
 	{
 		private static TranslationManager _instance;
-		private static TranslationManager Instance => _instance ??= new TranslationManager();
-
-		private LanguageConfig _language;
+		private static TranslationManager Instance => _instance ??= new TranslationManager("en");
+		
+		private LanguageConfig _languageConfig;
 		private Dictionary<string, string> _languageMap;
 
-		private TranslationManager()
+		private string _language = "";
+		private string Language
 		{
+			get => _language;
+			set
+			{
+				if (_language == value) return;
+				
+				_languageConfig = Resources.Load<LanguageConfig>("Languages/" + value);
+				_languageMap = new Dictionary<string, string>();
+				foreach (var data in _languageConfig.Items)
+				{
+					_languageMap[data.Key] = data.Value;
+				}
+				_language = value;
+			}
+		}
+
+		private TranslationManager(string language)
+		{
+			Language = language;
 		}
 
 		public static void SetLanguage(string language)
 		{
-			Instance._language = Resources.Load<LanguageConfig>("Languages/" + language);
-			Instance._languageMap = new Dictionary<string, string>();
-			foreach (var data in Instance._language.Items)
+			if (_instance == null)
 			{
-				Instance._languageMap[data.Key] = data.Value;
+				_instance = new TranslationManager(language);
+			}
+			else
+			{
+				_instance.Language = language;
 			}
 		}
 
 		public static string Translate(string key)
 		{
-			return Instance._languageMap.ContainsKey(key) ? Instance._languageMap[key] : null;
+			return Instance._languageMap.ContainsKey(key) ? Instance._languageMap[key] : key;
 		}
 	}
 }

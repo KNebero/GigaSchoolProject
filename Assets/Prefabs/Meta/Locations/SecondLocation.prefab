@@ -36,6 +36,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SecondLocation
       objectReference: {fileID: 0}
+    - target: {fileID: 5079275278942684123, guid: 40fb48190eedd7d4280652a4a1b1405e, type: 3}
+      propertyPath: _baseLocationName
+      value: SecondLocation
+      objectReference: {fileID: 0}
     - target: {fileID: 5204543060107992213, guid: 40fb48190eedd7d4280652a4a1b1405e, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -217

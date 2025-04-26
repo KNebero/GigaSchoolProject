@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using NUnit.Framework.Internal.Filters;
 
 namespace Game.Configs.LevelConfigs
 {
@@ -8,6 +9,7 @@ namespace Game.Configs.LevelConfigs
 	{
 		public const float FirstTimeMultiplier = 1.5f;
 
+		public string Id;
 		public int Location;
 		public int LevelNumber;
 		public List<EnemySpawnData> Enemies;

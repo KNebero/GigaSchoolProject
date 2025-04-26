@@ -1,3 +1,4 @@
+using Extensions;
 using Game.ClickButton;
 using Game.Configs.KNBConfig;
 using Game.Configs.LevelConfigs;
@@ -7,9 +8,13 @@ using Game.Skills;
 using Global.AudioSystem;
 using Global.SaveSystem;
 using Global.SaveSystem.SavableObjects;
+using Global.Translator;
+using Meta;
 using SceneManagement;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 namespace Game
 {
@@ -19,8 +24,13 @@ namespace Game
 		[SerializeField] private EnemyManager _enemyManager;
 		[SerializeField] private HealthBar.HealthBar _healthBar;
 		[SerializeField] private Timer.Timer _timer;
+		[SerializeField] private Image _enemyTypeIcon;
+		[SerializeField] private TextMeshProUGUI _currentEnemyNumber;
+		[SerializeField] private TextMeshProUGUI _totalEnemiesAmount;
+		[SerializeField] private TextMeshProUGUI _bossName;
 		[SerializeField] private EndLevelWindow.EndLevelWindow _endLevelWindow;
 		[SerializeField] private Button _goToMetaButton;
+		[SerializeField] private ConfirmationWindow _confirmationWindow;
 		[SerializeField] private LevelsConfig _levelsConfig;
 		[SerializeField] private SkillsConfig _skillsConfig;
 		[SerializeField] private KNBConfig _knbConfig;
@@ -42,7 +52,17 @@ namespace Game
 
 			_gameEnterParams = gameEnterParams;
 
-			_enemyManager.Initialize(_healthBar, _timer);
+			_gameScope = new GameScope()
+			{
+				HealthBar = _healthBar,
+				Timer = _timer,
+				EnemyTypeIcon = _enemyTypeIcon,
+				CurrentEnemyNumber = _currentEnemyNumber,
+				TotalEnemiesAmount = _totalEnemiesAmount,
+				BossName = _bossName,
+			};
+
+			_enemyManager.Initialize(_gameScope);
 			var nextLevel = _levelsConfig.GetNextLevelOnLocation(gameEnterParams.Location, gameEnterParams.Level);
 			if (nextLevel == -1)
 			{
@@ -65,12 +85,8 @@ namespace Game
 			_endLevelSystem =
 				new EndLevelSystem(_endLevelWindow, _commonObject.SaveSystem, _gameEnterParams, _levelsConfig);
 
-			_gameScope = new GameScope()
-			{
-				EndLevelSystem = _endLevelSystem,
-				EnemyManager = _enemyManager,
-				Timer = _timer,
-			};
+			_gameScope.EndLevelSystem = _endLevelSystem;
+			_gameScope.EnemyManager = _enemyManager;
 
 			var openedSkills = (OpenedSkills)_commonObject.SaveSystem.GetData(SavableObjectType.OpenedSkills);
 
@@ -80,7 +96,16 @@ namespace Game
 
 			_enemyManager.OnLevelPassed += _endLevelSystem.LevelPassed;
 
-			_goToMetaButton.onClick.AddListener(GoToMeta);
+			_confirmationWindow.Initialize(TranslationManager.Translate("GoToMetaConfirmation"), GoToMeta, () =>
+			{
+				if (_timer.gameObject.activeSelf) _timer.Play();
+			});
+			
+			_goToMetaButton.SubscribeOnly(() =>
+			{
+				if (_timer.gameObject.activeSelf) _timer.Pause();
+				_confirmationWindow.SetActive(true);
+			});
 
 			_commonObject.AudioManager.PlayClip(AudioGameNames.Background);
 			StartLevel();
@@ -103,19 +128,21 @@ namespace Game
 			_enemyManager.StartLevel(levelData);
 		}
 
-		public void NextLevel()
+		private void NextLevel()
 		{
 			_commonObject.SceneLoader.LoadGameplayScene(new GameEnterParams(_gameEnterParams.Location,
 				_gameEnterParams.Level + 1));
 		}
 
-		public void RestartLevel()
+		private void RestartLevel()
 		{
+			YG2.InterstitialAdvShow();
 			_commonObject.SceneLoader.LoadGameplayScene(_gameEnterParams);
 		}
 
-		public void GoToMeta()
+		private void GoToMeta()
 		{
+			YG2.InterstitialAdvShow();
 			_commonObject.SceneLoader.LoadMetaScene();
 		}
 	}
